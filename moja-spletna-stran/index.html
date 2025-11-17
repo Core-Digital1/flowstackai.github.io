@@ -10,7 +10,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
     <style>
-        /* VSI STILI OSTAJAJO ENAKI KOT PREJ */
         * {
             margin: 0;
             padding: 0;
@@ -367,6 +366,7 @@
             color: #4a6cf7;
             text-decoration: none;
             font-weight: bold;
+            cursor: pointer;
         }
 
         .message {
@@ -535,7 +535,7 @@
                 </button>
             </form>
             <div class="login-link">
-                Already have an account? <a href="#" onclick="openLoginModal()">Log in</a>
+                Already have an account? <a onclick="openLoginModal()">Log in</a>
             </div>
         </div>
     </div>
@@ -560,49 +560,115 @@
                 </button>
             </form>
             <div class="login-link">
-                <a href="#" onclick="forgotPassword()">Forgot password?</a>
+                <a onclick="openForgotPasswordModal()">Forgot password?</a>
             </div>
             <div class="login-link">
-                Don't have an account? <a href="#" onclick="openSignupModal()">Sign up</a>
+                Don't have an account? <a onclick="openSignupModal()">Sign up</a>
             </div>
         </div>
     </div>
 
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeForgotPasswordModal()">&times;</span>
+            <h2>Reset Your Password</h2>
+            <div id="forgotPasswordMessage" class="message"></div>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="forgotEmail">Enter your email address</label>
+                    <input type="email" id="forgotEmail" name="email" required>
+                </div>
+                <button type="submit" class="submit-btn" id="forgotPasswordBtn">
+                    SEND RESET LINK
+                </button>
+            </form>
+            <div class="login-link">
+                Remember your password? <a onclick="openLoginModal()">Log in</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- New Password Modal -->
+    <div id="newPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeNewPasswordModal()">&times;</span>
+            <h2>Set New Password</h2>
+            <div id="newPasswordMessage" class="message"></div>
+            <form id="newPasswordForm">
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                </div>
+                <button type="submit" class="submit-btn" id="newPasswordBtn">
+                    UPDATE PASSWORD
+                </button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // SUPABASE CONFIGURATION - VAŠI PRAVI PODATKI
+        // SUPABASE CONFIGURATION
         const supabaseUrl = 'https://mdvczbswbwbghschjthq.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kdmN6YnN3YndiZ2hzY2hqdGhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxOTcwNzIsImV4cCI6MjA3ODc3MzA3Mn0.LhiKgP0EWAANGJK7ocN8rbTBmEFttgTsCqwEzHzbezk';
-        
-        console.log('🔵 Supabase config loaded');
         
         // Initialize Supabase
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         // Modal functions
         function openSignupModal() {
+            closeAllModals();
             document.getElementById('signupModal').style.display = 'flex';
-            clearMessages();
         }
 
         function closeSignupModal() {
             document.getElementById('signupModal').style.display = 'none';
-            clearMessages();
         }
 
         function openLoginModal() {
-            closeSignupModal();
+            closeAllModals();
             document.getElementById('loginModal').style.display = 'flex';
-            clearMessages();
         }
 
         function closeLoginModal() {
             document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function openForgotPasswordModal() {
+            closeAllModals();
+            document.getElementById('forgotPasswordModal').style.display = 'flex';
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
+
+        function openNewPasswordModal() {
+            closeAllModals();
+            document.getElementById('newPasswordModal').style.display = 'flex';
+        }
+
+        function closeNewPasswordModal() {
+            document.getElementById('newPasswordModal').style.display = 'none';
+        }
+
+        function closeAllModals() {
+            document.getElementById('signupModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+            document.getElementById('newPasswordModal').style.display = 'none';
             clearMessages();
         }
 
         function clearMessages() {
             document.getElementById('signupMessage').style.display = 'none';
             document.getElementById('loginMessage').style.display = 'none';
+            document.getElementById('forgotPasswordMessage').style.display = 'none';
+            document.getElementById('newPasswordMessage').style.display = 'none';
         }
 
         function showMessage(elementId, message, type) {
@@ -614,18 +680,25 @@
 
         // Close modal when clicking outside
         window.onclick = function(event) {
-            const signupModal = document.getElementById('signupModal');
-            const loginModal = document.getElementById('loginModal');
-            
-            if (event.target === signupModal) {
-                closeSignupModal();
-            }
-            if (event.target === loginModal) {
-                closeLoginModal();
+            if (event.target.classList.contains('modal')) {
+                closeAllModals();
             }
         }
 
-        // SUPABASE SIGNUP - Z EMAIL VERIFICATION
+        // Check if URL has password reset token
+        function checkPasswordReset() {
+            const urlParams = new URLSearchParams(window.location.hash.substring(1));
+            const type = urlParams.get('type');
+            const access_token = urlParams.get('access_token');
+            
+            if (type === 'recovery' && access_token) {
+                openNewPasswordModal();
+                // Clean URL
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+        }
+
+        // SUPABASE SIGNUP
         document.getElementById('signupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
@@ -638,8 +711,6 @@
             signupBtn.textContent = 'Creating Account...';
             
             try {
-                console.log('🔵 Starting Supabase signup for:', email);
-                
                 // Create user in Supabase with email verification
                 const { data, error } = await supabase.auth.signUp({
                     email: email,
@@ -648,16 +719,11 @@
                         data: {
                             full_name: fullName
                         },
-                        emailRedirectTo: window.location.origin
+                        emailRedirectTo: 'https://flowstackai.github.io/flowstack'
                     }
                 });
 
-                console.log('🔵 Supabase response:', data, error);
-
-                if (error) {
-                    console.error('🔴 Signup error:', error);
-                    throw error;
-                }
+                if (error) throw error;
 
                 if (data.user) {
                     if (data.user.identities && data.user.identities.length === 0) {
@@ -677,12 +743,10 @@
                         );
                     }
                     
-                    // Clear form
                     document.getElementById('signupForm').reset();
                 }
                 
             } catch (error) {
-                console.error('🔴 Catch error:', error);
                 let errorMessage = 'Error creating account. ';
                 
                 if (error.message.includes('already registered')) {
@@ -746,31 +810,93 @@
             }
         });
 
-        // Forgot Password
-        async function forgotPassword() {
-            const email = prompt('Please enter your email address:');
-            if (email) {
-                try {
-                    const { error } = await supabase.auth.resetPasswordForEmail(email);
-                    if (error) throw error;
-                    alert('✅ Password reset email sent! Check your inbox.');
-                } catch (error) {
-                    alert('❌ Error sending reset email: ' + error.message);
-                }
-            }
-        }
+        // FORGOT PASSWORD
+        document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value;
+            const forgotBtn = document.getElementById('forgotPasswordBtn');
+            
+            forgotBtn.disabled = true;
+            forgotBtn.textContent = 'Sending...';
+            
+            try {
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: 'https://flowstackai.github.io/flowstack'
+                });
 
-        // Check auth state
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (session) {
-                console.log('✅ User is logged in:', session.user.email);
-            } else {
-                console.log('🔴 User is logged out');
+                if (error) throw error;
+
+                showMessage('forgotPasswordMessage', 
+                    '✅ Password reset link sent! Check your email (including spam folder).', 
+                    'success'
+                );
+                
+                document.getElementById('forgotPasswordForm').reset();
+                
+            } catch (error) {
+                showMessage('forgotPasswordMessage', 
+                    'Error sending reset link: ' + error.message, 
+                    'error'
+                );
+            } finally {
+                forgotBtn.disabled = false;
+                forgotBtn.textContent = 'SEND RESET LINK';
             }
         });
 
-        // Animation for feature cards
+        // NEW PASSWORD
+        document.getElementById('newPasswordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const newPasswordBtn = document.getElementById('newPasswordBtn');
+            
+            if (newPassword !== confirmPassword) {
+                showMessage('newPasswordMessage', 'Passwords do not match', 'error');
+                return;
+            }
+            
+            newPasswordBtn.disabled = true;
+            newPasswordBtn.textContent = 'Updating...';
+            
+            try {
+                const { error } = await supabase.auth.updateUser({
+                    password: newPassword
+                });
+
+                if (error) throw error;
+
+                showMessage('newPasswordMessage', 
+                    '✅ Password updated successfully! You can now log in with your new password.', 
+                    'success'
+                );
+                
+                document.getElementById('newPasswordForm').reset();
+                
+                setTimeout(() => {
+                    closeNewPasswordModal();
+                    openLoginModal();
+                }, 3000);
+                
+            } catch (error) {
+                showMessage('newPasswordMessage', 
+                    'Error updating password: ' + error.message, 
+                    'error'
+                );
+            } finally {
+                newPasswordBtn.disabled = false;
+                newPasswordBtn.textContent = 'UPDATE PASSWORD';
+            }
+        });
+
+        // Check auth state and password reset on load
         document.addEventListener('DOMContentLoaded', function() {
+            // Check for password reset
+            checkPasswordReset();
+            
+            // Animation for feature cards
             const cards = document.querySelectorAll('.feature-card');
             cards.forEach((card, index) => {
                 setTimeout(() => {
@@ -778,6 +904,13 @@
                     card.style.transform = 'translateY(0)';
                 }, index * 200);
             });
+        });
+
+        // Auth state listener
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (event === 'PASSWORD_RECOVERY') {
+                openNewPasswordModal();
+            }
         });
     </script>
 </body>
