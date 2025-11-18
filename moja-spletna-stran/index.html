@@ -685,21 +685,36 @@
             }
         }
 
-        // Check if URL has password reset token
+        // Check if URL has password reset token - IZBOLJŠANA
         function checkPasswordReset() {
+            // Preveri URL hash za reset token
             const urlParams = new URLSearchParams(window.location.hash.substring(1));
             const type = urlParams.get('type');
             const access_token = urlParams.get('access_token');
             
-            console.log('Checking password reset:', { type, access_token });
+            console.log('🔍 Checking URL for password reset:', { type, access_token });
             
             if (type === 'recovery' && access_token) {
-                // Store the token and open new password modal
+                console.log('✅ Password reset token found! Opening password modal...');
+                
+                // Shrani token in odpri modal
                 sessionStorage.setItem('reset_token', access_token);
                 openNewPasswordModal();
-                // Clean URL
+                
+                // Počisti URL brez reloada
                 window.history.replaceState({}, document.title, window.location.pathname);
+                return true;
             }
+            
+            // Preveri tudi sessionStorage za token
+            const storedToken = sessionStorage.getItem('reset_token');
+            if (storedToken) {
+                console.log('✅ Stored reset token found!');
+                openNewPasswordModal();
+                return true;
+            }
+            
+            return false;
         }
 
         // SUPABASE SIGNUP
@@ -911,6 +926,20 @@
                 }, index * 200);
             });
         });
+
+        // Avtomatsko preveri za password reset vsakih 500ms za 5 sekund
+        let checkCount = 0;
+        const checkInterval = setInterval(() => {
+            if (checkPasswordReset()) {
+                console.log('✅ Password reset detected and handled!');
+                clearInterval(checkInterval);
+            }
+            checkCount++;
+            if (checkCount > 10) { // Po 5 sekundah (10 * 500ms)
+                clearInterval(checkInterval);
+                console.log('⏰ Password reset check timeout');
+            }
+        }, 500);
 
         // Auth state listener
         supabase.auth.onAuthStateChange((event, session) => {
