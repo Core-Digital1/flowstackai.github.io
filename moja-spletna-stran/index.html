@@ -687,24 +687,36 @@
             }
         }
 
-       // POPRAVLJENA FUNKCIJA - z debug in force detection
+      // POPRAVLJENA FUNKCIJA - z ročnim parsanjem hash-a
 function checkPasswordReset() {
     console.log('🎯 ULTRA CHECK - Starting password reset detection...');
     console.log('📍 Full URL:', window.location.href);
     console.log('📍 Hash:', window.location.hash);
-    console.log('📍 Search:', window.location.search);
     
-    // 1. Preveri HASH del (glavni način)
+    // 1. Preveri HASH del z ROČNIM parsanjem
     if (window.location.hash) {
-        console.log('🔍 Checking hash parameters...');
-        const hashParams = new URLSearchParams(window.location.hash.substring(1));
-        const type = hashParams.get('type');
-        const access_token = hashParams.get('access_token');
+        console.log('🔍 Checking hash with MANUAL parsing...');
         
-        console.log('📋 Hash params - type:', type, 'access_token:', access_token ? 'PRESENT' : 'MISSING');
+        // Ročno parsaj hash (URLSearchParams včasih ne dela)
+        const hash = window.location.hash.substring(1);
+        console.log('📋 Raw hash:', hash);
+        
+        // Razdeli hash na parametre
+        const params = {};
+        hash.split('&').forEach(pair => {
+            const [key, value] = pair.split('=');
+            params[key] = value;
+        });
+        
+        console.log('📋 Manual parsed params:', params);
+        
+        const type = params['type'];
+        const access_token = params['access_token'];
+        
+        console.log('📋 Manual check - type:', type, 'access_token:', access_token ? 'PRESENT' : 'MISSING');
         
         if (type === 'recovery' && access_token) {
-            console.log('🎉 SUCCESS: Password reset token FOUND in hash!');
+            console.log('🎉 SUCCESS: Password reset token FOUND with manual parsing!');
             sessionStorage.setItem('reset_token', access_token);
             
             // Takoj odpri modal
@@ -723,32 +735,7 @@ function checkPasswordReset() {
         }
     }
     
-    // 2. Preveri SEARCH del (query parameters)
-    if (window.location.search) {
-        console.log('🔍 Checking search parameters...');
-        const searchParams = new URLSearchParams(window.location.search);
-        const type = searchParams.get('type');
-        const access_token = searchParams.get('access_token');
-        
-        console.log('📋 Search params - type:', type, 'access_token:', access_token ? 'PRESENT' : 'MISSING');
-        
-        if (type === 'recovery' && access_token) {
-            console.log('🎉 SUCCESS: Password reset token FOUND in search!');
-            sessionStorage.setItem('reset_token', access_token);
-            
-            setTimeout(() => {
-                openNewPasswordModal();
-            }, 300);
-            
-            setTimeout(() => {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }, 1000);
-            
-            return true;
-        }
-    }
-    
-    // 3. Preveri sessionStorage
+    // 2. Preveri tudi sessionStorage
     const storedToken = sessionStorage.getItem('reset_token');
     if (storedToken) {
         console.log('🎉 SUCCESS: Stored reset token found!');
@@ -758,40 +745,9 @@ function checkPasswordReset() {
         return true;
     }
     
-    // 4. Force check - preveri vsako sekundo
-    console.log('🔄 Starting force check every second...');
-    let forceCheckCount = 0;
-    const forceCheck = setInterval(() => {
-        forceCheckCount++;
-        console.log(`🔍 Force check ${forceCheckCount}:`, window.location.hash);
-        
-        if (window.location.hash && window.location.hash.includes('type=recovery')) {
-            console.log('🎉 SUCCESS: Token found in force check!');
-            clearInterval(forceCheck);
-            
-            const hashParams = new URLSearchParams(window.location.hash.substring(1));
-            const access_token = hashParams.get('access_token');
-            sessionStorage.setItem('reset_token', access_token);
-            
-            setTimeout(() => {
-                openNewPasswordModal();
-            }, 300);
-            
-            setTimeout(() => {
-                window.history.replaceState({}, document.title, window.location.pathname);
-            }, 1000);
-        }
-        
-        if (forceCheckCount >= 10) {
-            console.log('⏰ Force check timeout after 10 seconds');
-            clearInterval(forceCheck);
-        }
-    }, 1000);
-    
-    console.log('❌ No password reset token found initially');
+    console.log('❌ No password reset token found');
     return false;
 }
-
         // SUPABASE SIGNUP
         document.getElementById('signupForm').addEventListener('submit', async function(e) {
             e.preventDefault();
