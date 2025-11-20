@@ -959,13 +959,25 @@
         }, 50);
 
         // Auth state listener
-        supabase.auth.onAuthStateChange((event, session) => {
-            console.log('🔐 Auth state changed:', event);
-            if (event === 'PASSWORD_RECOVERY') {
-                console.log('🔄 Password recovery event detected!');
+       // Auth state listener - POPRAVLJEN
+supabase.auth.onAuthStateChange((event, session) => {
+    console.log('🔐 Auth state changed:', event);
+    
+    if (event === 'PASSWORD_RECOVERY') {
+        console.log('🔄 Password recovery event detected!');
+        openNewPasswordModal();
+    }
+    else if (event === 'SIGNED_IN') {
+        console.log('✅ User signed in - checking if password reset...');
+        // Preveri če je password reset in odpri modal
+        setTimeout(() => {
+            if (window.location.hash.includes('type=recovery') || sessionStorage.getItem('reset_token')) {
                 openNewPasswordModal();
             }
-        });
+        }, 1000);
+    }
+});
     </script>
 </body>
 </html>
+
