@@ -687,17 +687,16 @@
         }
     }
 
-    // IMPROVED PASSWORD RESET DETECTION
+    // SIMPLE PASSWORD RESET DETECTION
     function handlePasswordReset() {
-        console.log('🔍 Checking URL for password reset...');
-        console.log('📍 Full URL:', window.location.href);
-        console.log('📍 Hash:', window.location.hash);
+        console.log('=== PASSWORD RESET CHECK ===');
+        console.log('Full URL:', window.location.href);
+        console.log('Hash:', window.location.hash);
         
-        // Check if we have a password reset URL
         if (window.location.hash && window.location.hash.includes('type=recovery')) {
-            console.log('🎯 Password reset URL detected!');
+            console.log('🎯 PASSWORD RESET DETECTED - OPENING MODAL');
             
-            // Parse the hash parameters
+            // Parse hash parameters
             const hashParams = {};
             window.location.hash.substring(1).split('&').forEach(pair => {
                 const [key, value] = pair.split('=');
@@ -705,53 +704,25 @@
             });
             
             const access_token = hashParams['access_token'];
-            const type = hashParams['type'];
-            
-            if (access_token && type === 'recovery') {
-                console.log('✅ Valid password reset token found');
-                
-                // Store the token
+            if (access_token) {
                 sessionStorage.setItem('reset_token', access_token);
-                
-                // Open the new password modal immediately
-                setTimeout(() => {
-                    openNewPasswordModal();
-                    console.log('🚀 New password modal opened');
-                }, 500);
-                
-                // Clean the URL
-                setTimeout(() => {
-                    window.history.replaceState({}, document.title, window.location.pathname);
-                    console.log('🧹 URL cleaned');
-                }, 1000);
-                
-                return true;
+                console.log('Token stored:', access_token);
             }
-        }
-        
-        // Check for errors in URL parameters
-        const urlParams = new URLSearchParams(window.location.search);
-        const error = urlParams.get('error');
-        
-        if (error === 'access_denied') {
-            console.log('❌ Access denied error detected');
             
-            setTimeout(() => {
-                openForgotPasswordModal();
-                showMessage('forgotPasswordMessage', 
-                    '❌ Your password reset link has expired or is invalid. Please request a new one.', 
-                    'error'
-                );
-            }, 500);
+            // Open modal immediately
+            openNewPasswordModal();
+            console.log('Modal opened successfully');
             
-            // Clean URL
+            // Clean URL after a delay
             setTimeout(() => {
                 window.history.replaceState({}, document.title, window.location.pathname);
+                console.log('URL cleaned');
             }, 1000);
             
             return true;
         }
         
+        console.log('No password reset detected');
         return false;
     }
 
@@ -950,50 +921,41 @@
         }
     });
 
-    // Check for password reset on page load
+    // MULTIPLE CHECKS FOR PASSWORD RESET
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🚀 DOM loaded, checking for password reset...');
-        
-        // Check for password reset immediately
-        setTimeout(() => {
-            handlePasswordReset();
-        }, 100);
-        
-        // Animation for feature cards
-        const cards = document.querySelectorAll('.feature-card');
-        cards.forEach((card, index) => {
-            setTimeout(() => {
-                card.style.opacity = '1';
-                card.style.transform = 'translateY(0)';
-            }, index * 200);
-        });
-    });
-
-    // Check for URL changes
-    window.addEventListener('hashchange', function() {
-        console.log('🔗 Hash changed, checking for password reset...');
-        setTimeout(() => {
-            handlePasswordReset();
-        }, 100);
-    });
-
-    // Check immediately when script loads
-    console.log('📄 Script loaded, checking URL immediately...');
-    setTimeout(() => {
+        console.log('🚀 DOM loaded - checking password reset');
         handlePasswordReset();
-    }, 50);
+    });
+
+    window.addEventListener('load', function() {
+        console.log('📄 Page loaded - checking password reset');
+        handlePasswordReset();
+    });
+
+    // Check multiple times to be sure
+    setTimeout(handlePasswordReset, 100);
+    setTimeout(handlePasswordReset, 500);
+    setTimeout(handlePasswordReset, 1000);
+    setTimeout(handlePasswordReset, 2000);
+
+    // Check on hash change
+    window.addEventListener('hashchange', function() {
+        console.log('🔗 Hash changed - checking password reset');
+        handlePasswordReset();
+    });
 
     // Auth state listener
     supabase.auth.onAuthStateChange((event, session) => {
         console.log('🔐 Auth state changed:', event);
-        
         if (event === 'PASSWORD_RECOVERY') {
-            console.log('🔄 Password recovery event detected');
-            setTimeout(() => {
-                handlePasswordReset();
-            }, 500);
+            console.log('🔄 Password recovery event - checking again');
+            setTimeout(handlePasswordReset, 100);
         }
     });
+
+    // Initial check
+    console.log('🔍 Initial script load - checking password reset');
+    handlePasswordReset();
 </script>
 </body>
 </html>
