@@ -687,14 +687,15 @@
         }
     }
 
-    // SIMPLE PASSWORD RESET DETECTION
+    // IMPROVED PASSWORD RESET DETECTION
     function handlePasswordReset() {
         console.log('=== PASSWORD RESET CHECK ===');
         console.log('Full URL:', window.location.href);
         console.log('Hash:', window.location.hash);
         
+        // Check for valid password reset URL
         if (window.location.hash && window.location.hash.includes('type=recovery')) {
-            console.log('🎯 PASSWORD RESET DETECTED - OPENING MODAL');
+            console.log('🎯 VALID PASSWORD RESET DETECTED - OPENING NEW PASSWORD MODAL');
             
             // Parse hash parameters
             const hashParams = {};
@@ -709,11 +710,11 @@
                 console.log('Token stored:', access_token);
             }
             
-            // Open modal immediately
+            // Open new password modal
             openNewPasswordModal();
-            console.log('Modal opened successfully');
+            console.log('New password modal opened');
             
-            // Clean URL after a delay
+            // Clean URL
             setTimeout(() => {
                 window.history.replaceState({}, document.title, window.location.pathname);
                 console.log('URL cleaned');
@@ -722,7 +723,28 @@
             return true;
         }
         
-        console.log('No password reset detected');
+        // Check for expired/invalid password reset link
+        if (window.location.hash && window.location.hash.includes('error=access_denied')) {
+            console.log('❌ EXPIRED PASSWORD RESET LINK DETECTED - OPENING FORGOT PASSWORD MODAL');
+            
+            // Open forgot password modal with error message
+            openForgotPasswordModal();
+            showMessage('forgotPasswordMessage', 
+                '❌ Your password reset link has expired or is invalid. Please request a new one below.', 
+                'error'
+            );
+            console.log('Forgot password modal opened with error message');
+            
+            // Clean URL
+            setTimeout(() => {
+                window.history.replaceState({}, document.title, window.location.pathname);
+                console.log('URL cleaned after error');
+            }, 1000);
+            
+            return true;
+        }
+        
+        console.log('No password reset scenario detected');
         return false;
     }
 
