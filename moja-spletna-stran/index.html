@@ -1,113 +1,973 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FlowStack - Modern Income Education</title>
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<style>
-    /* Tvoja originalna CSS koda ostane nespremenjena */
-    * { margin:0; padding:0; box-sizing:border-box; font-family:'Arial', sans-serif; }
-    body { background: linear-gradient(135deg,#0f1b3a 0%,#1e3a8a 50%,#0f1b3a 100%); color:#333; min-height:100vh; padding:20px; line-height:1.6; }
-    .container { max-width:1000px; margin:0 auto; padding:40px 20px; background:rgba(255,255,255,0.95); border-radius:15px; box-shadow:0 20px 60px rgba(0,0,0,0.3); position:relative; z-index:2; backdrop-filter:blur(10px); }
-    header { text-align:center; margin-bottom:40px; }
-    .logo-container { margin-bottom:30px; }
-    .logo { width:200px; height:200px; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; font-size:120px; }
-    h1 { font-size:42px; margin-bottom:15px; background:linear-gradient(45deg,#4a6cf7,#6a11cb); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; font-weight:bold; }
-    .subtitle { font-size:20px; opacity:0.8; margin-bottom:10px; color:#666; }
-    .cta-section { text-align:center; margin:60px 0; }
-    .cta-button { background: linear-gradient(45deg,#4a6cf7,#6a11cb); color:white; padding:18px 45px; font-size:18px; font-weight:bold; border:none; border-radius:50px; cursor:pointer; transition:all 0.3s ease; box-shadow:0 8px 25px rgba(74,108,247,0.3); }
-    .cta-button:hover { transform:translateY(-3px); box-shadow:0 12px 30px rgba(74,108,247,0.4); }
-    .modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); z-index:1000; justify-content:center; align-items:center; }
-    .modal-content { background:white; padding:40px; border-radius:15px; width:90%; max-width:450px; box-shadow:0 20px 60px rgba(0,0,0,0.3); position:relative; }
-    .close-modal { position:absolute; top:15px; right:20px; font-size:24px; cursor:pointer; color:#666; }
-    .form-group { margin-bottom:20px; }
-    .form-group label { display:block; margin-bottom:8px; font-weight:bold; color:#475569; }
-    .form-group input { width:100%; padding:12px 15px; border:2px solid #e2e8f0; border-radius:8px; font-size:16px; transition:border-color 0.3s ease; }
-    .form-group input:focus { outline:none; border-color:#4a6cf7; }
-    .submit-btn { width:100%; background:linear-gradient(45deg,#4a6cf7,#6a11cb); color:white; padding:15px; font-size:16px; font-weight:bold; border:none; border-radius:8px; cursor:pointer; transition:all 0.3s ease; margin-top:10px; }
-    .submit-btn:hover { transform:translateY(-2px); box-shadow:0 8px 20px rgba(74,108,247,0.3); }
-    .submit-btn:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
-    .login-link { text-align:center; margin-top:20px; font-size:14px; color:#666; }
-    .login-link a { color:#4a6cf7; text-decoration:none; font-weight:bold; cursor:pointer; }
-    .message { padding:10px; border-radius:5px; margin:10px 0; text-align:center; display:none; }
-    .message.success { background:#d4edda; color:#155724; border:1px solid #c3e6cb; }
-    .message.error { background:#f8d7da; color:#721c24; border:1px solid #f5c6cb; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowStack - Modern Income Education</title>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #0f1b3a 0%, #1e3a8a 50%, #0f1b3a 100%);
+            color: #333333;
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo-container {
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 120px;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+        }
+
+        .subtitle {
+            font-size: 20px;
+            opacity: 0.8;
+            margin-bottom: 10px;
+            color: #666666;
+        }
+
+        .value-proposition {
+            background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 50px 0;
+            border-left: 4px solid #4a6cf7;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
+            padding: 35px;
+            border-radius: 12px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .feature-card:nth-child(1) {
+            border-color: #4a6cf7;
+            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        }
+
+        .feature-card:nth-child(2) {
+            border-color: #6a11cb;
+            background: linear-gradient(135deg, #ffffff 0%, #f3f0ff 100%);
+        }
+
+        .feature-card:nth-child(3) {
+            border-color: #00d4ff;
+            background: linear-gradient(135deg, #ffffff 0%, #f0fdff 100%);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .feature-title {
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .feature-card:nth-child(1) .feature-title {
+            color: #4a6cf7;
+        }
+
+        .feature-card:nth-child(2) .feature-title {
+            color: #6a11cb;
+        }
+
+        .feature-card:nth-child(3) .feature-title {
+            color: #00d4ff;
+        }
+
+        .feature-description {
+            opacity: 0.8;
+            font-size: 15px;
+            line-height: 1.5;
+            color: #475569;
+        }
+
+        .cta-section {
+            text-align: center;
+            margin: 60px 0;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            color: white;
+            padding: 18px 45px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(74, 108, 247, 0.4);
+        }
+
+        .trust-signals {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            opacity: 0.9;
+        }
+
+        .trust-item {
+            text-align: center;
+        }
+
+        .trust-number {
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a6cf7;
+            display: block;
+        }
+
+        .trust-label {
+            font-size: 14px;
+            opacity: 0.8;
+            color: #475569;
+        }
+
+        .methodology {
+            background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 50px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8ff;
+        }
+
+        .methodology h2 {
+            color: #4a6cf7;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .method-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .step {
+            padding: 20px;
+        }
+
+        .step-number {
+            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: bold;
+            font-size: 18px;
+            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            opacity: 0.7;
+            font-size: 14px;
+            color: #475569;
+        }
+
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .video-background video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0.05;
+        }
+
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 450px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+
+        .modal h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #4a6cf7;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #475569;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #4a6cf7;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            color: white;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(74, 108, 247, 0.3);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #4a6cf7;
+            text-decoration: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .message {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+            display: none;
+        }
+
+        .message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .logo {
+                width: 150px;
+                height: 150px;
+                font-size: 80px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-signals {
+                gap: 25px;
+            }
+            
+            .modal-content {
+                padding: 30px 20px;
+                margin: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <header>
-        <div class="logo-container"><div class="logo">🚀</div></div>
-        <h1>FlowStack</h1>
-        <p class="subtitle">Modern Education for Digital Income</p>
-    </header>
-    <div class="cta-section">
-        <button class="cta-button" onclick="openSignupModal()">START YOUR JOURNEY</button>
+    <div class="video-background">
+        <video autoplay muted loop>
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-white-flowers-1586-large.mp4" type="video/mp4">
+        </video>
     </div>
-</div>
 
-<!-- Signup Modal -->
-<div id="signupModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeSignupModal()">&times;</span>
-        <h2>Create Your Account</h2>
-        <div id="signupMessage" class="message"></div>
-        <form id="signupForm">
-            <div class="form-group"><label for="fullName">Full Name</label><input type="text" id="fullName" name="fullName" required></div>
-            <div class="form-group"><label for="email">Email Address</label><input type="email" id="email" name="email" required></div>
-            <div class="form-group"><label for="password">Password (min. 6 characters)</label><input type="password" id="password" name="password" required minlength="6"></div>
-            <button type="submit" class="submit-btn" id="signupBtn">CREATE ACCOUNT</button>
-        </form>
-        <div class="login-link">Already have an account? <a onclick="openLoginModal()">Log in</a></div>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    🚀
+                </div>
+            </div>
+            <h1>FlowStack</h1>
+            <p class="subtitle">Modern Education for Digital Income</p>
+        </header>
+
+        <div class="value-proposition">
+            <h2 style="text-align: center; margin-bottom: 20px; color: #4a6cf7;">Learn High-Income Digital Skills</h2>
+            <p style="text-align: center; opacity: 0.8; font-size: 18px; color: #475569;">
+                Stop trading time for money. Build scalable income streams with in-demand digital skills.
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-title">Proven Methods</div>
+                <p class="feature-description">Learn strategies that actually work in today's digital economy, not just theory.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-title">AI-Powered Learning</div>
+                <p class="feature-description">Personal AI mentor adapts to your pace and helps you master skills faster.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-title">Global Opportunities</div>
+                <p class="feature-description">Skills that work regardless of your location or background.</p>
+            </div>
+        </div>
+
+        <div class="methodology">
+            <h2>How It Works</h2>
+            <div class="method-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Learn</h3>
+                    <p style="opacity: 0.8; font-size: 14px; color: #475569;">Master high-value digital skills</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Apply</h3>
+                    <p style="opacity: 0.8; font-size: 14px; color: #475569;">Implement with guided projects</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Earn</h3>
+                    <p style="opacity: 0.8; font-size: 14px; color: #475569;">Build your income streams</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="trust-signals">
+            <div class="trust-item">
+                <span class="trust-number">10K+</span>
+                <div class="trust-label">Users</div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-number">4.8/5</span>
+                <div class="trust-label">Rating</div>
+            </div>
+            <div class="trust-item">
+                <span class="trust-number">25+</span>
+                <div class="trust-label">Countries</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <button class="cta-button" onclick="openSignupModal()">
+                START YOUR JOURNEY
+            </button>
+            <p style="margin-top: 20px; opacity: 0.8; font-size: 14px; color: #475569;">
+                Start earning with zero experience
+            </p>
+        </div>
+
+        <footer>
+            <p>© 2026 FlowStack - Modern Income Education. All rights reserved.</p>
+        </footer>
     </div>
-</div>
 
-<!-- Login Modal -->
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeLoginModal()">&times;</span>
-        <h2>Log In to Your Account</h2>
-        <div id="loginMessage" class="message"></div>
-        <form id="loginForm">
-            <div class="form-group"><label for="loginEmail">Email Address</label><input type="email" id="loginEmail" name="email" required></div>
-            <div class="form-group"><label for="loginPassword">Password</label><input type="password" id="loginPassword" name="password" required></div>
-            <button type="submit" class="submit-btn" id="loginBtn">LOG IN</button>
-        </form>
-        <div class="login-link"><a onclick="openForgotPasswordModal()">Forgot password?</a></div>
-        <div class="login-link">Don't have an account? <a onclick="openSignupModal()">Sign up</a></div>
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeSignupModal()">&times;</span>
+            <h2>Create Your Account</h2>
+            <div id="signupMessage" class="message"></div>
+            <form id="signupForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password (min. 6 characters)</label>
+                    <input type="password" id="password" name="password" required minlength="6">
+                </div>
+                <button type="submit" class="submit-btn" id="signupBtn">
+                    CREATE ACCOUNT
+                </button>
+            </form>
+            <div class="login-link">
+                Already have an account? <a onclick="openLoginModal()">Log in</a>
+            </div>
+        </div>
     </div>
-</div>
 
-<!-- Forgot Password Modal -->
-<div id="forgotPasswordModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal" onclick="closeForgotPasswordModal()">&times;</span>
-        <h2>Reset Your Password</h2>
-        <div id="forgotPasswordMessage" class="message"></div>
-        <form id="forgotPasswordForm">
-            <div class="form-group"><label for="forgotEmail">Enter your email address</label><input type="email" id="forgotEmail" name="email" required></div>
-            <button type="submit" class="submit-btn" id="forgotPasswordBtn">SEND RESET LINK</button>
-        </form>
-        <div class="login-link">Remember your password? <a onclick="openLoginModal()">Log in</a></div>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeLoginModal()">&times;</span>
+            <h2>Log In to Your Account</h2>
+            <div id="loginMessage" class="message"></div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" name="password" required>
+                </div>
+                <button type="submit" class="submit-btn" id="loginBtn">
+                    LOG IN
+                </button>
+            </form>
+            <div class="login-link">
+                <a onclick="openForgotPasswordModal()">Forgot password?</a>
+            </div>
+            <div class="login-link">
+                Don't have an account? <a onclick="openSignupModal()">Sign up</a>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-const supabaseUrl = 'https://mdvczbswbwbghschjthq.supabase.co';
-const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kdmN6YnN3YndiZ2hzY2hqdGhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxOTcwNzIsImV4cCI6MjA3ODc3MzA3Mn0.LhiKgP0EWAANGJK7ocN8rbTBmEFttgTsCqwEzHzbezk';
-const supabase = supabase.createClient(supabaseUrl, supabaseKey);
+    <!-- Forgot Password Modal -->
+    <div id="forgotPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeForgotPasswordModal()">&times;</span>
+            <h2>Reset Your Password</h2>
+            <div id="forgotPasswordMessage" class="message"></div>
+            <form id="forgotPasswordForm">
+                <div class="form-group">
+                    <label for="forgotEmail">Enter your email address</label>
+                    <input type="email" id="forgotEmail" name="email" required>
+                </div>
+                <button type="submit" class="submit-btn" id="forgotPasswordBtn">
+                    SEND RESET LINK
+                </button>
+            </form>
+            <div class="login-link">
+                Remember your password? <a onclick="openLoginModal()">Log in</a>
+            </div>
+        </div>
+    </div>
 
-// Modal functions
-function openSignupModal() { document.getElementById('signupModal').style.display = 'flex'; }
-function closeSignupModal() { document.getElementById('signupModal').style.display = 'none'; }
-function openLoginModal() { document.getElementById('loginModal').style.display = 'flex'; }
-function closeLoginModal() { document.getElementById('loginModal').style.display = 'none'; }
-function openForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'flex'; }
-function closeForgotPasswordModal() { document.getElementById('forgotPasswordModal').style.display = 'none'; }
+    <!-- New Password Modal -->
+    <div id="newPasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeNewPasswordModal()">&times;</span>
+            <h2>Set New Password</h2>
+            <div id="newPasswordMessage" class="message"></div>
+            <form id="newPasswordForm">
+                <div class="form-group">
+                    <label for="newPassword">New Password</label>
+                    <input type="password" id="newPassword" name="password" required minlength="6">
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" required minlength="6">
+                </div>
+                <button type="submit" class="submit-btn" id="newPasswordBtn">
+                    UPDATE PASSWORD
+                </button>
+            </form>
+        </div>
+    </div>
 
-// Close modal on click outside
-window.onclick = function(e){ if(e.target.classList.contains('modal')){ document.querySelectorAll('.modal').forEach(m=>m.style.display='none'); } }
-</script>
+    <script>
+        // SUPABASE CONFIGURATION
+        const supabaseUrl = 'https://mdvczbswbwbghschjthq.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1kdmN6YnN3YndiZ2hzY2hqdGhxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjMxOTcwNzIsImV4cCI6MjA3ODc3MzA3Mn0.LhiKgP0EWAANGJK7ocN8rbTBmEFttgTsCqwEzHzbezk';
+        
+        // Initialize Supabase
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+        // Modal functions
+        function openSignupModal() {
+            closeAllModals();
+            document.getElementById('signupModal').style.display = 'flex';
+        }
+
+        function closeSignupModal() {
+            document.getElementById('signupModal').style.display = 'none';
+        }
+
+        function openLoginModal() {
+            closeAllModals();
+            document.getElementById('loginModal').style.display = 'flex';
+        }
+
+        function closeLoginModal() {
+            document.getElementById('loginModal').style.display = 'none';
+        }
+
+        function openForgotPasswordModal() {
+            closeAllModals();
+            document.getElementById('forgotPasswordModal').style.display = 'flex';
+        }
+
+        function closeForgotPasswordModal() {
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+        }
+
+        function openNewPasswordModal() {
+            closeAllModals();
+            document.getElementById('newPasswordModal').style.display = 'flex';
+        }
+
+        function closeNewPasswordModal() {
+            document.getElementById('newPasswordModal').style.display = 'none';
+        }
+
+        function closeAllModals() {
+            document.getElementById('signupModal').style.display = 'none';
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('forgotPasswordModal').style.display = 'none';
+            document.getElementById('newPasswordModal').style.display = 'none';
+            clearMessages();
+        }
+
+        function clearMessages() {
+            const messages = ['signupMessage', 'loginMessage', 'forgotPasswordMessage', 'newPasswordMessage'];
+            messages.forEach(id => {
+                const element = document.getElementById(id);
+                if (element) element.style.display = 'none';
+            });
+        }
+
+        function showMessage(elementId, message, type) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.textContent = message;
+                element.className = `message ${type}`;
+                element.style.display = 'block';
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                closeAllModals();
+            }
+        }
+
+        // FORCE PASSWORD RESET DETECTION
+        function forcePasswordResetDetection() {
+            console.log('🔍 FORCE DETECTION - Checking URL...');
+            console.log('📍 Full URL:', window.location.href);
+            console.log('📍 Hash:', window.location.hash);
+            
+            // Preveri hash za password reset
+            if (window.location.hash && window.location.hash.includes('type=recovery')) {
+                console.log('🎯 FORCE DETECTION: Password reset URL detected!');
+                
+                // Ročno parsaj hash
+                const hash = window.location.hash.substring(1);
+                const params = {};
+                hash.split('&').forEach(pair => {
+                    const [key, value] = pair.split('=');
+                    params[key] = value;
+                });
+                
+                const access_token = params['access_token'];
+                if (access_token) {
+                    console.log('🎯 FORCE DETECTION: Token found, opening modal!');
+                    sessionStorage.setItem('reset_token', access_token);
+                    
+                    // Takoj odpri modal
+                    setTimeout(() => {
+                        openNewPasswordModal();
+                        console.log('🚀 Modal opened via force detection!');
+                    }, 1000);
+                    
+                    // Počisti URL
+                    setTimeout(() => {
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                        console.log('🧹 URL cleaned');
+                    }, 2000);
+                    
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        // SUPABASE SIGNUP
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fullName = document.getElementById('fullName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const signupBtn = document.getElementById('signupBtn');
+            
+            signupBtn.disabled = true;
+            signupBtn.textContent = 'Creating Account...';
+            
+            try {
+                // Create user in Supabase with email verification
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: {
+                        data: {
+                            full_name: fullName
+                        },
+                        emailRedirectTo: 'https://flowstackai.github.io'
+                    }
+                });
+
+                if (error) throw error;
+
+                if (data.user) {
+                    if (data.user.identities && data.user.identities.length === 0) {
+                        showMessage('signupMessage', 
+                            'Account already exists with this email. Please log in instead.', 
+                            'error'
+                        );
+                    } else if (data.user.confirmed_at) {
+                        showMessage('signupMessage', 
+                            'Account created and email verified! You can now log in.', 
+                            'success'
+                        );
+                    } else {
+                        showMessage('signupMessage', 
+                            '🎉 Account created! Please check your email (including spam folder) for verification link.', 
+                            'success'
+                        );
+                    }
+                    
+                    document.getElementById('signupForm').reset();
+                }
+                
+            } catch (error) {
+                let errorMessage = 'Error creating account. ';
+                
+                if (error.message.includes('already registered')) {
+                    errorMessage += 'Email already exists. Please log in.';
+                } else if (error.message.includes('Invalid email')) {
+                    errorMessage += 'Invalid email address.';
+                } else if (error.message.includes('Password')) {
+                    errorMessage += 'Password should be at least 6 characters.';
+                } else {
+                    errorMessage += error.message;
+                }
+                
+                showMessage('signupMessage', errorMessage, 'error');
+            } finally {
+                signupBtn.disabled = false;
+                signupBtn.textContent = 'CREATE ACCOUNT';
+            }
+        });
+
+        // SUPABASE LOGIN
+        document.getElementById('loginForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const loginBtn = document.getElementById('loginBtn');
+            
+            loginBtn.disabled = true;
+            loginBtn.textContent = 'Logging in...';
+            
+            try {
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+
+                if (error) throw error;
+
+                if (data.user) {
+                    showMessage('loginMessage', '✅ Login successful! Redirecting...', 'success');
+                    setTimeout(() => {
+                        closeLoginModal();
+                        // Redirect to dashboard
+                        // window.location.href = '/dashboard.html';
+                    }, 2000);
+                }
+                
+            } catch (error) {
+                let errorMessage = 'Login failed. ';
+                if (error.message.includes('Invalid login credentials')) {
+                    errorMessage += 'Invalid email or password.';
+                } else if (error.message.includes('Email not confirmed')) {
+                    errorMessage += 'Please verify your email address first.';
+                } else {
+                    errorMessage += error.message;
+                }
+                showMessage('loginMessage', errorMessage, 'error');
+            } finally {
+                loginBtn.disabled = false;
+                loginBtn.textContent = 'LOG IN';
+            }
+        });
+
+        // FORGOT PASSWORD
+        document.getElementById('forgotPasswordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('forgotEmail').value;
+            const forgotBtn = document.getElementById('forgotPasswordBtn');
+            
+            forgotBtn.disabled = true;
+            forgotBtn.textContent = 'Sending...';
+            
+            try {
+                const { error } = await supabase.auth.resetPasswordForEmail(email, {
+                    redirectTo: 'https://flowstackai.github.io'
+                });
+
+                if (error) throw error;
+
+                showMessage('forgotPasswordMessage', 
+                    '✅ Password reset link sent! Check your email (including spam folder).', 
+                    'success'
+                );
+                
+                document.getElementById('forgotPasswordForm').reset();
+                
+            } catch (error) {
+                showMessage('forgotPasswordMessage', 
+                    'Error sending reset link: ' + error.message, 
+                    'error'
+                );
+            } finally {
+                forgotBtn.disabled = false;
+                forgotBtn.textContent = 'SEND RESET LINK';
+            }
+        });
+
+        // NEW PASSWORD
+        document.getElementById('newPasswordForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const newPasswordBtn = document.getElementById('newPasswordBtn');
+            
+            if (newPassword !== confirmPassword) {
+                showMessage('newPasswordMessage', 'Passwords do not match', 'error');
+                return;
+            }
+            
+            newPasswordBtn.disabled = true;
+            newPasswordBtn.textContent = 'Updating...';
+            
+            try {
+                const { error } = await supabase.auth.updateUser({
+                    password: newPassword
+                });
+
+                if (error) throw error;
+
+                showMessage('newPasswordMessage', 
+                    '✅ Password updated successfully! You can now log in with your new password.', 
+                    'success'
+                );
+                
+                // Clear stored token
+                sessionStorage.removeItem('reset_token');
+                document.getElementById('newPasswordForm').reset();
+                
+                setTimeout(() => {
+                    closeNewPasswordModal();
+                    openLoginModal();
+                }, 3000);
+                
+            } catch (error) {
+                showMessage('newPasswordMessage', 
+                    'Error updating password: ' + error.message, 
+                    'error'
+                );
+            } finally {
+                newPasswordBtn.disabled = false;
+                newPasswordBtn.textContent = 'UPDATE PASSWORD';
+            }
+        });
+
+        // Check auth state and password reset on load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 DOM loaded, checking for password reset...');
+            
+            // Check for password reset - TAKOJ
+            setTimeout(() => {
+                forcePasswordResetDetection();
+            }, 100);
+            
+            // Animation for feature cards
+            const cards = document.querySelectorAll('.feature-card');
+            cards.forEach((card, index) => {
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        });
+
+        // AVTOMATSKO PREVERJANJE - DODANO
+        window.addEventListener('hashchange', function() {
+            console.log('🔗 Hash changed, checking for password reset...');
+            setTimeout(() => {
+                forcePasswordResetDetection();
+            }, 100);
+        });
+
+        // Preveri takoj ko se stran naloži (še preden je DOM ready)
+        console.log('📄 Script loaded, checking URL immediately...');
+        setTimeout(() => {
+            forcePasswordResetDetection();
+        }, 50);
+
+        // Auth state listener - POPRAVLJEN
+        supabase.auth.onAuthStateChange((event, session) => {
+            console.log('🔐 Auth state changed:', event);
+            
+            if (event === 'PASSWORD_RECOVERY' || event === 'SIGNED_IN') {
+                console.log('🔄 Auth event that might be password reset:', event);
+                // Vedno preveri za password reset
+                setTimeout(() => {
+                    forcePasswordResetDetection();
+                }, 500);
+            }
+        });
+    </script>
 </body>
 </html>
