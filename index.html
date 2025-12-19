@@ -10,31 +10,39 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+        :root {
+            --primary-color: #4a6cf7;
+            --secondary-color: #6a11cb;
+            --accent-gradient: linear-gradient(135deg, #4a6cf7 0%, #6a11cb 100%);
+            --bg-light: #f8fafc;
+            --text-main: #1e293b;
+            --text-muted: #64748b;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
         }
 
         body {
-            background: linear-gradient(135deg, #0f1b3a 0%, #1e3a8a 50%, #0f1b3a 100%);
-            color: #333333;
+            background-color: var(--bg-light);
+            background-image:
+                radial-gradient(at 0% 0%, rgba(74, 108, 247, 0.05) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(106, 17, 203, 0.05) 0px, transparent 50%);
+            color: var(--text-main);
             min-height: 100vh;
             padding: 20px;
             line-height: 1.6;
         }
 
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 60px 40px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.03);
             position: relative;
             z-index: 2;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(20px);
         }
 
         header {
@@ -57,13 +65,14 @@
         }
 
         h1 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            font-size: 48px;
+            margin-bottom: 20px;
+            background: var(--accent-gradient);
+            background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            font-weight: bold;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .subtitle {
@@ -90,28 +99,37 @@
         }
 
         .feature-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f8faff 100%);
-            padding: 35px;
-            border-radius: 12px;
-            border: 2px solid;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
-        .feature-card:nth-child(1) {
-            border-color: #4a6cf7;
-            background: linear-gradient(135deg, #ffffff 0%, #f0f4ff 100%);
+        .feature-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
 
-        .feature-card:nth-child(2) {
-            border-color: #6a11cb;
-            background: linear-gradient(135deg, #ffffff 0%, #f3f0ff 100%);
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(74, 108, 247, 0.1);
+            border-color: rgba(74, 108, 247, 0.2);
         }
 
-        .feature-card:nth-child(3) {
-            border-color: #00d4ff;
-            background: linear-gradient(135deg, #ffffff 0%, #f0fdff 100%);
+        .feature-card:hover::after {
+            opacity: 1;
         }
 
         .feature-card:hover {
@@ -125,16 +143,8 @@
             font-weight: bold;
         }
 
-        .feature-card:nth-child(1) .feature-title {
-            color: #4a6cf7;
-        }
-
-        .feature-card:nth-child(2) .feature-title {
-            color: #6a11cb;
-        }
-
-        .feature-card:nth-child(3) .feature-title {
-            color: #00d4ff;
+        .feature-card .feature-title {
+            color: var(--text-main);
         }
 
         .feature-description {
@@ -150,21 +160,24 @@
         }
 
         .cta-button {
-            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            background: var(--accent-gradient);
             color: white;
-            padding: 18px 45px;
+            padding: 20px 50px;
             font-size: 18px;
-            font-weight: bold;
+            font-weight: 700;
             border: none;
-            border-radius: 50px;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(74, 108, 247, 0.3);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(74, 108, 247, 0.2);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(74, 108, 247, 0.4);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(74, 108, 247, 0.3);
+            filter: brightness(1.1);
         }
 
         .trust-signals {
@@ -220,7 +233,7 @@
         }
 
         .step-number {
-            background: linear-gradient(45deg, #4a6cf7, #6a11cb);
+            background: var(--accent-gradient);
             color: white;
             width: 50px;
             height: 50px;
@@ -229,9 +242,9 @@
             align-items: center;
             justify-content: center;
             margin: 0 auto 15px;
-            font-weight: bold;
-            font-size: 18px;
-            box-shadow: 0 5px 15px rgba(74, 108, 247, 0.3);
+            font-weight: 700;
+            font-size: 20px;
+            box-shadow: 0 10px 20px rgba(74, 108, 247, 0.2);
         }
 
         footer {
@@ -282,12 +295,13 @@
 
         .modal-content {
             background: white;
-            padding: 40px;
-            border-radius: 15px;
+            padding: 50px 40px;
+            border-radius: 24px;
             width: 90%;
             max-width: 450px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.2);
             position: relative;
+            border: 1px solid var(--border-color);
         }
 
         .close-modal {
@@ -301,8 +315,13 @@
 
         .modal h2 {
             text-align: center;
-            margin-bottom: 25px;
-            color: #4a6cf7;
+            margin-bottom: 30px;
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+            font-size: 2rem;
         }
 
         .form-group {
@@ -389,36 +408,93 @@
             border: 1px solid #f5c6cb;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .value-proposition {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            margin: 60px 0;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            text-align: center;
+        }
+
+        .value-proposition h2 {
+            background: var(--accent-gradient);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .methodology {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 24px;
+            margin: 80px 0;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
+            border: 1px solid var(--border-color);
+        }
+
+        .methodology h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+            color: var(--text-main);
+        }
+
         @media (max-width: 768px) {
             .container {
-                padding: 20px 15px;
+                padding: 40px 20px;
+                margin: 20px;
             }
 
             h1 {
-                font-size: 36px;
+                font-size: 32px;
             }
 
-            .logo {
-                width: 150px;
-                height: 150px;
-                font-size: 80px;
+            .logo-container span {
+                font-size: 40px !important;
+            }
+
+            .value-proposition h2 {
+                font-size: 1.8rem;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
             }
 
+            .method-steps {
+                grid-template-columns: 1fr;
+            }
+
             .trust-signals {
-                gap: 25px;
+                gap: 20px;
             }
 
             .modal-content {
                 padding: 30px 20px;
-                margin: 20px;
             }
         }
 
-        /* Password Toggle Styles */
         .password-container {
             position: relative;
             display: flex;
@@ -454,19 +530,21 @@
     <div class="container">
         <header>
             <div class="logo-container"
-                style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
-                <img src="img/flowstack-icon.png" alt="FlowStack" width="55" height="55" style="object-fit: contain;">
+                style="display: flex; align-items: center; justify-content: center; gap: 18px; margin-bottom: 30px;">
+                <img src="img/flowstack-icon.png" alt="FlowStack" width="60" height="60"
+                    style="object-fit: contain; filter: drop-shadow(0 0 10px rgba(74, 108, 247, 0.2));">
                 <!-- Text -->
                 <span
-                    style="font-size: 48px; font-weight: 400; color: #1e3a5f; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: -1px;">Flowstack<sup
-                        style="font-size: 14px; vertical-align: super;">™</sup></span>
+                    style="font-size: 56px; font-weight: 800; background: var(--accent-gradient); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: 'Segoe UI', Arial, sans-serif; letter-spacing: -2px;">Flowstack</span>
             </div>
             <p class="subtitle">Modern Education for Digital Income</p>
         </header>
         <div class="value-proposition">
-            <h2 style="text-align: center; margin-bottom: 20px; color: #4a6cf7;">Learn High-Income Digital Skills</h2>
-            <p style="text-align: center; opacity: 0.8; font-size: 18px; color: #475569;">Stop trading time for money.
-                Build scalable income streams with in-demand digital skills. </p>
+            <h2>Learn High-Income Digital Skills</h2>
+            <p style="opacity: 0.8; font-size: 1.25rem; color: var(--text-muted); max-width: 700px; margin: 0 auto;">
+                Stop trading time for money. Build scalable income streams with in-demand digital skills and AI-powered
+                learning.
+            </p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
