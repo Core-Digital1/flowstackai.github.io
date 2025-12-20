@@ -899,14 +899,15 @@
         }
 
         .model-item-icon {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 1.1rem;
             background: #f1f5f9;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
         }
 
         .model-item-name {
@@ -1505,19 +1506,19 @@
         let selectedModel = 'ChatGPT';
 
         const aiModels = [
-            { id: 'chatgpt', name: 'ChatGPT', icon: 'fas fa-bolt', color: '#f59e0b' },
-            { id: 'deepseek', name: 'DeepSeek', icon: 'fas fa-search', color: '#3b82f6' },
-            { id: 'chatgpt_image', name: 'chatGPT Image', icon: 'fas fa-image', color: '#10b981' },
-            { id: 'nano_banana', name: 'nano banana', icon: 'fas fa-leaf', color: '#eab308' },
-            { id: 'claude', name: 'Claude', icon: 'fas fa-brain', color: '#ec4899' },
-            { id: 'perplexity', name: 'Perplexity AI', icon: 'fas fa-globe', color: '#06b6d4' },
-            { id: 'stable_diffusion', name: 'Stable Diffusion', icon: 'fas fa-paint-brush', color: '#8b5cf6' },
-            { id: 'gemini', name: 'Gemini', icon: 'fas fa-stars', color: '#4f46e5' },
-            { id: 'leonardo', name: 'Leonardo AI', icon: 'fas fa-palette', color: '#f43f5e' },
+            { id: 'chatgpt', name: 'ChatGPT', icon: 'fas fa-robot', color: '#10a37f' },
+            { id: 'deepseek', name: 'DeepSeek', icon: 'fas fa-circle-nodes', color: '#4b70e2' },
+            { id: 'chatgpt_image', name: 'chatGPT Image', icon: 'fas fa-wand-magic-sparkles', color: '#10a37f' },
+            { id: 'nano_banana', name: 'nano banana', icon: 'fas fa-leaf', color: '#facc15' },
+            { id: 'claude', name: 'Claude', icon: 'fas fa-feather-pointed', color: '#d97757' },
+            { id: 'perplexity', name: 'Perplexity AI', icon: 'fas fa-atom', color: '#191a1a' },
+            { id: 'stable_diffusion', name: 'Stable Diffusion', icon: 'fas fa-palette', color: '#8b5cf6' },
+            { id: 'gemini', name: 'Gemini', icon: 'fas fa-sparkles', color: '#4285f4' },
+            { id: 'leonardo', name: 'Leonardo AI', icon: 'fas fa-paint-brush', color: '#2ecc71' },
             { id: 'llama', name: 'LLaMa', icon: 'fas fa-paw', color: '#14b8a6' },
             { id: 'mistral', name: 'Mistral', icon: 'fas fa-wind', color: '#6366f1' },
-            { id: 'grok', name: 'Grok', icon: 'fas fa-lightbulb', color: '#f97316' },
-            { id: 'midjourney', name: 'Midjourney', icon: 'fas fa-mountain', color: '#334155' }
+            { id: 'grok', name: 'Grok', icon: 'fas fa-lightbulb', color: '#000000' },
+            { id: 'midjourney', name: 'Midjourney', icon: 'fas fa-mountain-sun', color: '#334155' }
         ];
 
         function populateModelList() {
