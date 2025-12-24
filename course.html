@@ -107,9 +107,9 @@
             grid-template-columns: 1fr 280px;
             gap: 25px;
             max-width: 1600px;
-            margin: 30px auto;
-            padding: 0 30px;
-            height: calc(100vh - 120px);
+            margin: 20px auto;
+            padding: 0 20px;
+            height: calc(100vh - 100px);
         }
 
         /* Main Content Area */
@@ -473,18 +473,112 @@
 
         /* Responsive */
         @media (max-width: 1024px) {
+            .navbar {
+                padding: 0.75rem 1.25rem;
+            }
+
             .course-container {
                 grid-template-columns: 1fr;
                 height: auto;
-                padding-bottom: 50px;
+                margin: 15px auto;
+                padding: 0 15px;
+                gap: 15px;
             }
 
             .sidebar {
-                height: 500px;
+                height: auto;
+                max-height: 400px;
+            }
+
+            .tabs-container {
+                min-height: auto;
             }
 
             .video-player-wrapper {
-                margin-bottom: 20px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .navbar {
+                padding: 0.5rem 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .back-btn {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            #courseTitleHeader {
+                display: none;
+                /* Hide title in navbar on very small screens to save space */
+            }
+
+            .course-container {
+                margin: 10px auto;
+                padding: 0 10px;
+                gap: 10px;
+            }
+
+            .main-content {
+                gap: 12px;
+            }
+
+            .tab-btn {
+                padding: 10px 12px;
+                font-size: 0.85rem;
+            }
+
+            .tab-content {
+                padding: 15px;
+            }
+
+            .lesson-text h2 {
+                font-size: 1.4rem;
+            }
+
+            .lesson-text h3 {
+                font-size: 1.2rem;
+                margin: 1.25rem 0 0.75rem;
+            }
+
+            .lesson-text p,
+            .lesson-text li {
+                font-size: 0.9rem;
+            }
+
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .tool-card {
+                padding: 15px;
+            }
+
+            .sidebar-header {
+                padding: 15px;
+            }
+
+            .sidebar-header h3 {
+                font-size: 1rem;
+            }
+
+            .lesson-item {
+                padding: 6px 8px;
+                gap: 8px;
+            }
+
+            .lesson-title {
+                font-size: 0.85rem;
+            }
+
+            .lesson-meta {
+                font-size: 0.75rem;
             }
         }
 
