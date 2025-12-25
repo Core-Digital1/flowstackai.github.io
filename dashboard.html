@@ -367,7 +367,15 @@
 
         @media (max-width: 640px) {
             .main-wrapper {
-                padding: 55px 12px 12px;
+                padding: 80px 12px 12px;
+                /* Increased top padding for header */
+            }
+
+            .sidebar {
+                overflow-y: auto;
+                /* Allow scrolling within sidebar */
+                padding-bottom: 100px;
+                /* Ensure content isn't hidden behind browser bars */
             }
 
             .progress-section {
@@ -436,10 +444,26 @@
                 border-radius: 20px;
             }
 
+            .chat-view-container {
+                height: calc(100vh - 80px);
+                /* Adjust height for mobile header */
+                display: flex;
+                flex-direction: column;
+            }
+
+            .chat-messages {
+                flex: 1;
+                overflow-y: auto;
+                min-height: 0;
+                /* Crucial for flex box scrolling */
+                padding: 12px;
+                gap: 10px;
+            }
+
             .chat-input-wrapper input {
                 font-size: 0.9rem;
                 /* Fallback */
-                font-size: 16px;
+                font-size: 16px !important;
                 /* Prevent auto-zoom on iOS */
             }
 
@@ -1791,12 +1815,7 @@
                 </div>
             </div>
 
-            <div class="section-label" data-i18n="label_select_path">SELECT YOUR PATH</div>
-            <div class="courses-grid" id="coursesGrid">
-                <!-- Populated by JS -->
-            </div>
-
-            <div class="progress-section" style="margin-top: 40px;">
+            <div class="progress-section" style="margin-top: 0; margin-bottom: 30px;">
                 <div class="section-label" data-i18n="label_your_progress" style="margin-bottom: 20px;">YOUR PROGRESS
                 </div>
                 <div
@@ -1810,6 +1829,11 @@
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div class="section-label" data-i18n="label_select_path">SELECT YOUR PATH</div>
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Populated by JS -->
             </div>
 
             <div class="section-label" data-i18n="label_current_module" style="margin-top: 40px;">CURRENT MODULE</div>
