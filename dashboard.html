@@ -2413,6 +2413,13 @@
             }
         }
 
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            if (sidebar) sidebar.classList.toggle('active');
+            if (overlay) overlay.classList.toggle('active');
+        }
+
         function toggleUserDropdown() {
             document.getElementById('userDropdown').classList.toggle('show');
         }
