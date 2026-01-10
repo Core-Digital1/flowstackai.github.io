@@ -2625,7 +2625,13 @@
             showTypingIndicator();
 
             try {
-                let response = await getGeminiResponse(message);
+                let response;
+
+                if (selectedModel === 'DeepSeek') {
+                    response = await getDeepSeekResponse(message);
+                } else {
+                    response = await getGeminiResponse(message);
+                }
 
                 if (!response) {
                     // Fallback to simulation
@@ -3410,6 +3416,31 @@
             showView('ai-chat');
             document.getElementById('aiChatInput').value = text;
             document.getElementById('aiChatInput').focus();
+        }
+
+        // --- DEEPSEEK API INTEGRATION --
+        async function getDeepSeekResponse(prompt) {
+            // Check if supabaseClient is ready
+            if (!supabaseClient) {
+                console.error("Supabase client not initialized");
+                return null;
+            }
+
+            try {
+                const { data, error } = await supabaseClient.functions.invoke('chat-deepseek', {
+                    body: { prompt: prompt }
+                });
+
+                if (error) {
+                    console.error("DeepSeek Function Error:", error);
+                    return null;
+                }
+
+                return data.response;
+            } catch (err) {
+                console.error("DeepSeek Invoke Error:", err);
+                return null;
+            }
         }
 
         // --- GEMINI API INTEGRATION ---
