@@ -3456,26 +3456,35 @@
 
         // --- DEEPSEEK API INTEGRATION --
         async function getDeepSeekResponse(prompt) {
-            // Check if supabaseClient is ready
-            if (!supabaseClient) {
-                console.error("Supabase client not initialized");
-                return null;
-            }
-
             try {
+                // Ensure Supabase is initialized
+                if (!supabaseClient) {
+                    throw new Error("Supabase client not initialized");
+                }
+
                 const { data, error } = await supabaseClient.functions.invoke('chat-deepseek', {
                     body: { prompt: prompt }
                 });
 
                 if (error) {
                     console.error("DeepSeek Function Error:", error);
-                    return null;
+                    // Try to get more details if available
+                    const msg = (error && error.message) ? error.message : JSON.stringify(error);
+                    throw new Error(`Supabase Function Error: ${msg}`);
+                }
+
+                if (!data || !data.response) {
+                    // Check if data contains an error from the function code itself (caught in try/catch inside function)
+                    if (data && data.error) {
+                        throw new Error(`API Error: ${data.error}`);
+                    }
+                    throw new Error("Empty response from DeepSeek function");
                 }
 
                 return data.response;
             } catch (err) {
                 console.error("DeepSeek Invoke Error:", err);
-                return null;
+                throw err; // Propagate the error to sendAiMessage
             }
         }
 
