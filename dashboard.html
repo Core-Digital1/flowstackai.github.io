@@ -2657,20 +2657,24 @@
 
             try {
                 let response;
-
                 if (selectedModel === 'DeepSeek') {
                     response = await getDeepSeekResponse(message);
-                } else {
+                } else if (selectedModel === 'Gemini' && typeof google !== 'undefined') { // Only try Gemini if SDK loaded
                     response = await getGeminiResponse(message);
-                }
-
-                if (!response) {
-                    // Fallback to simulation
-                    await new Promise(r => setTimeout(r, 800 + Math.random() * 1000));
-                    response = getModelResponse(message);
+                } else {
+                    // For now, other models are not implemented with real APIs
+                    // response = null; 
+                    // USER REQUEST: Disable simulation. 
+                    // If you want standard simulation for others, uncomment below, but user said "ONLY deepseek works"
+                    // response = getModelResponse(message); 
+                    throw new Error(`Integration for ${selectedModel} is not yet active. Please select DeepSeek.`);
                 }
 
                 hideTypingIndicator();
+
+                if (!response) {
+                    throw new Error(`No response received from ${selectedModel}. Check API Key or deployment.`);
+                }
 
                 // 3. Add AI Message
                 addMessageToChat(currentChatId, 'ai', response);
@@ -2685,10 +2689,11 @@
 
             } catch (err) {
                 hideTypingIndicator();
-                appendMessageToView('ai', "Error connecting to AI. Please try again or check your connection.");
+                console.error("Chat Error:", err);
+                // Show error in chat
+                appendMessageToView('ai', `⚠️ **Error:** ${err.message || "Connection failed."}`);
             }
         }
-
         function addMessageToChat(chatId, role, content) {
             const chat = allChats.find(c => c.id === chatId);
             if (chat) {
