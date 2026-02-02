@@ -813,7 +813,11 @@
         // Initialize Supabase
         let supabaseClient;
         if (window.supabase) {
-            supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+            supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey, {
+                auth: {
+                    storage: window.sessionStorage
+                }
+            });
         } else {
             console.error('Supabase SDK not loaded - some features may be unavailable');
         }
