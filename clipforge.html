@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ClipForge AI - Turn Long Videos Into Viral Shorts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white min-h-screen">
+
+    <!-- APP CONTAINER -->
+    <div id="app">
+        <!-- Views will be toggled here -->
+    </div>
+
+    <!-- AUTH MODAL -->
+    <div id="auth-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 hidden">
+        <div class="absolute inset-0 bg-black/70 backdrop-blur-sm" onclick="closeAuthModal()"></div>
+        <div class="relative bg-gray-900 border border-gray-700 rounded-2xl p-8 w-full max-w-md">
+            <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                <i data-lucide="x" class="w-6 h-6"></i>
+            </button>
+            <h2 id="modal-title" class="text-2xl font-bold text-white mb-6">Welcome</h2>
+            <div id="auth-message" class="mb-4 p-3 rounded-lg hidden"></div>
+
+            <form id="auth-form" class="space-y-4" onsubmit="handleAuthSubmit(event)">
+                <div id="name-field" class="relative hidden">
+                    <i data-lucide="user" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                    <input type="text" id="input-name" placeholder="Full Name"
+                        class="w-full bg-gray-800 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div class="relative">
+                    <i data-lucide="mail" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                    <input type="email" id="input-email" inputs="email" placeholder="Email" required
+                        class="w-full bg-gray-800 border border-gray-700 rounded-lg pl-10 pr-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <div class="relative">
+                    <i data-lucide="lock" class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                    <input type="password" id="input-password" placeholder="Password" required minlength="6"
+                        class="w-full bg-gray-800 border border-gray-700 rounded-lg pl-10 pr-12 py-3 text-white placeholder-gray-400 focus:outline-none focus:border-purple-500">
+                </div>
+
+                <button type="submit" id="auth-submit-btn"
+                    class="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 rounded-lg font-semibold hover:opacity-90 transition">
+                    LOG IN
+                </button>
+            </form>
+
+            <div class="text-center text-gray-400 mt-6 space-y-2" id="auth-footer">
+                <!-- Links injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN SCRIPT -->
+    <script>
+        // --- CONFIGURATION ---
+        // Using ClipForgeAI specific credentials
+        const supabaseUrl = 'https://mgoaydvrlelrwompqjph.supabase.co';
+        const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nb2F5ZHZybGVscndvbXBxanBoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1MjM2MzcsImV4cCI6MjA4NTA5OTYzN30.WGIJPXxL0QhBo3TpcTf8bNX9YMbVEtZztX1NtToZXRM';
+
+        // Initialize Supabase with SESSION STORAGE (Login required on every visit)
+        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey, {
+            auth: { storage: window.sessionStorage }
+        });
+
+        // --- STATE ---
+        let currentUser = null;
+        let currentAuthMode = 'login'; // login, signup, forgot
+        let activeTab = 'upload';
+
+        // --- VIEWS HTML TEMPLATES ---
+        const LANDING_VIEW = `
+            <nav class="fixed w-full z-40 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-center justify-between h-16">
+                        <div class="flex items-center gap-2">
+                            <i data-lucide="zap" class="w-6 h-6 text-purple-500"></i>
+                            <span class="text-xl font-bold bg-gradient-to-r from-white to-gray-400 bg-clip-text text-transparent">ClipForge AI</span>
+                        </div>
+                        <div class="flex items-center gap-4">
+                            <button onclick="openAuthModal('login')" class="text-gray-300 hover:text-white px-3 py-2 text-sm font-medium transition">Log in</button>
+                            <button onclick="openAuthModal('signup')" class="bg-white text-gray-900 px-4 py-2 rounded-full text-sm font-medium hover:bg-gray-100 transition">Sign up</button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <section class="pt-32 pb-20 px-4 text-center">
+                <div class="max-w-7xl mx-auto">
+                    <div class="inline-flex items-center gap-2 bg-purple-500/20 border border-purple-500/30 rounded-full px-4 py-2 mb-8">
+                        <i data-lucide="zap" class="w-4 h-4 text-purple-400"></i>
+                        <span class="text-purple-300 text-sm">AI-Powered Video Editing</span>
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-200 to-blue-200 bg-clip-text text-transparent">
+                        Turn Long Videos Into<br />
+                        <span class="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text">Viral Shorts</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+                        AI-powered tool that automatically detects viral moments, generates short clips, adds dynamic subtitles, and prepares your content for social media.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button onclick="openAuthModal('signup')" class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:opacity-90 transition shadow-lg shadow-purple-500/25">
+                            Start Creating Free
+                        </button>
+                    </div>
+                </div>
+            </section>
+        `;
+
+        const DASHBOARD_VIEW = (userEmail) => `
+            <div class="flex min-h-screen">
+                <!-- SIDEBAR -->
+                <aside class="w-64 bg-gray-800/50 border-r border-gray-700 flex flex-col fixed h-full">
+                    <div class="flex items-center gap-2 p-6 border-b border-gray-700">
+                        <i data-lucide="zap" class="w-8 h-8 text-purple-500"></i>
+                        <span class="text-xl font-bold">ClipForge AI</span>
+                    </div>
+                    <div class="p-4 border-b border-gray-700">
+                        <p class="text-sm text-gray-400">Logged in as:</p>
+                        <p class="text-white font-medium truncate">${userEmail}</p>
+                    </div>
+                    <nav class="flex-1 p-4">
+                        <ul class="space-y-2">
+                            <li><button onclick="switchTab('upload')" id="tab-btn-upload" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white transition"><i data-lucide="upload" class="w-5 h-5"></i> Upload</button></li>
+                            <li><button onclick="switchTab('editor')" id="tab-btn-editor" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white transition"><i data-lucide="scissors" class="w-5 h-5"></i> Editor</button></li>
+                            <li><button onclick="switchTab('settings')" id="tab-btn-settings" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white transition"><i data-lucide="settings" class="w-5 h-5"></i> Settings</button></li>
+                        </ul>
+                    </nav>
+                    <div class="p-4 border-t border-gray-700">
+                        <button onclick="logout()" class="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-gray-400 hover:bg-gray-700 hover:text-white transition">
+                            <i data-lucide="log-out" class="w-5 h-5"></i> Logout
+                        </button>
+                    </div>
+                </aside>
+
+                <!-- CONTENT -->
+                <main class="flex-1 p-8 ml-64" id="dashboard-content">
+                    <!-- Content injected by switchTab -->
+                </main>
+            </div>
+        `;
+
+        // --- INIT ---
+        window.addEventListener('scroll', () => {
+            // Placeholder for potential scroll effects
+        });
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Check session immediately
+            const { data: { session } } = await supabase.auth.getSession();
+            if (session) {
+                currentUser = session.user;
+                renderDashboard();
+            } else {
+                renderLanding();
+            }
+            lucide.createIcons();
+        });
+
+        // --- RENDER FUNCTIONS ---
+        function renderLanding() {
+            document.getElementById('app').innerHTML = LANDING_VIEW;
+            lucide.createIcons();
+        }
+
+        function renderDashboard() {
+            if (!currentUser) return;
+            document.getElementById('app').innerHTML = DASHBOARD_VIEW(currentUser.email);
+            switchTab('upload'); // Default tab
+            lucide.createIcons();
+        }
+
+        function switchTab(tab) {
+            activeTab = tab;
+
+            // Update Sidebar UI
+            document.querySelectorAll('aside button').forEach(b => {
+                if (b.id && b.id.includes('tab-btn')) {
+                    b.classList.remove('bg-purple-600', 'text-white');
+                    b.classList.add('text-gray-400');
+                    if (b.id === `tab-btn-${tab}`) {
+                        b.classList.remove('text-gray-400');
+                        b.classList.add('bg-purple-600', 'text-white');
+                    }
+                }
+            });
+
+            const contentEl = document.getElementById('dashboard-content');
+
+            if (tab === 'upload') {
+                contentEl.innerHTML = `
+                    <h1 class="text-3xl font-bold mb-8">Upload Video</h1>
+                    <div class="border-2 border-dashed border-gray-600 rounded-2xl p-12 text-center hover:border-purple-500 transition cursor-pointer mb-8">
+                        <i data-lucide="upload" class="w-16 h-16 text-gray-500 mx-auto mb-4"></i>
+                        <p class="text-xl text-gray-300 mb-2">Drag and drop your video here</p>
+                        <p class="text-gray-500 mb-4">or click to browse files</p>
+                        <button class="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-6 py-3 rounded-full font-semibold hover:opacity-90 transition">Select Video</button>
+                    </div>
+                    <h2 class="text-xl font-semibold mb-4">Recent Projects</h2>
+                    <p class="text-gray-500">No projects yet.</p>
+                `;
+            } else if (tab === 'editor') {
+                contentEl.innerHTML = `
+                    <h1 class="text-3xl font-bold mb-8">Video Editor</h1>
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-12 text-center">
+                        <i data-lucide="scissors" class="w-16 h-16 text-gray-500 mx-auto mb-4"></i>
+                        <p class="text-xl text-gray-300 mb-2">No video selected</p>
+                        <p class="text-gray-500">Upload a video first to start editing</p>
+                    </div>
+                `;
+            } else if (tab === 'settings') {
+                contentEl.innerHTML = `
+                    <h1 class="text-3xl font-bold mb-8">Settings</h1>
+                    <div class="bg-gray-800/50 border border-gray-700 rounded-2xl p-6 max-w-2xl">
+                        <h2 class="text-xl font-semibold mb-4">Account Settings</h2>
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-gray-400 mb-2">Email</label>
+                                <input type="email" value="${currentUser.email}" disabled class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none">
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+            lucide.createIcons();
+        }
+
+        // --- AUTH FUNCTIONS ---
+        function openAuthModal(mode) {
+            currentAuthMode = mode;
+            updateModalUI();
+            document.getElementById('auth-modal').classList.remove('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('auth-modal').classList.add('hidden');
+        }
+
+        function updateModalUI() {
+            const title = document.getElementById('modal-title');
+            const btn = document.getElementById('auth-submit-btn');
+            const footer = document.getElementById('auth-footer');
+            const nameField = document.getElementById('name-field');
+            const passField = document.getElementById('input-password').parentElement;
+
+            nameField.classList.add('hidden');
+            document.getElementById('auth-message').classList.add('hidden');
+
+            if (currentAuthMode === 'login') {
+                title.textContent = 'Log In';
+                btn.textContent = 'LOG IN';
+                footer.innerHTML = `
+                    <p>Don't have an account? <span onclick="openAuthModal('signup')" class="text-purple-400 cursor-pointer hover:text-purple-300">Sign Up</span></p>
+                `;
+            } else if (currentAuthMode === 'signup') {
+                title.textContent = 'Create Account';
+                btn.textContent = 'CREATE ACCOUNT';
+                nameField.classList.remove('hidden');
+                footer.innerHTML = `
+                    <p>Already have an account? <span onclick="openAuthModal('login')" class="text-purple-400 cursor-pointer hover:text-purple-300">Log In</span></p>
+                `;
+            }
+        }
+
+        async function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('input-email').value;
+            const password = document.getElementById('input-password').value;
+            const name = document.getElementById('input-name').value;
+            const msgEl = document.getElementById('auth-message');
+
+            msgEl.classList.add('hidden');
+            msgEl.className = 'mb-4 p-3 rounded-lg hidden'; // reset styling
+
+            try {
+                let result;
+                if (currentAuthMode === 'signup') {
+                    result = await supabase.auth.signUp({
+                        email,
+                        password,
+                        options: { data: { full_name: name } }
+                    });
+                } else {
+                    result = await supabase.auth.signInWithPassword({
+                        email,
+                        password
+                    });
+                }
+
+                if (result.error) throw result.error;
+
+                if (currentAuthMode === 'signup' && !result.data.session) {
+                    msgEl.textContent = 'Check your email for the confirmation link!';
+                    msgEl.classList.remove('hidden');
+                    msgEl.classList.add('bg-green-500/20', 'border', 'border-green-500', 'text-green-300');
+                } else {
+                    // Login successful
+                    currentUser = result.data.user;
+                    closeAuthModal();
+                    renderDashboard();
+                }
+
+            } catch (error) {
+                msgEl.textContent = error.message;
+                msgEl.classList.remove('hidden');
+                msgEl.classList.add('bg-red-500/20', 'border', 'border-red-500', 'text-red-300');
+            }
+        }
+
+        async function logout() {
+            await supabase.auth.signOut();
+            currentUser = null;
+            renderLanding();
+        }
+
+    </script>
+</body>
+
+</html>
