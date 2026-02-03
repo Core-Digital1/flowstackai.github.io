@@ -7,9 +7,8 @@
     <title>ClipForge AI - Professional Editor</title>
 
     <!-- EXACT IMPORTS FROM DASHBOARD.HTML -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2?v=20260203_2000"></script>
-    <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css?v=20260203_2000">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- CLIPFORGE SPECIFIC -->
@@ -97,6 +96,14 @@
 
 <body class="bg-gray-950 text-white min-h-screen">
 
+    <!-- LOADER -->
+    <div id="loader"
+        class="fixed inset-0 z-[60] flex items-center justify-center bg-gray-900 text-white flex-col gap-4">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+        <div class="text-xl font-bold animate-pulse">Initializing ClipForge...</div>
+        <div id="error-log" class="text-red-500 text-xs mt-4 max-w-md text-center hidden"></div>
+    </div>
+
     <!-- APP CONTAINER -->
     <div id="app" class="h-full flex flex-col"></div>
 
@@ -123,11 +130,26 @@
         </div>
     </div>
 
+    <!-- MAIN SCRIPT -->
     <script>
+        // --- GLOBAL ERROR HANDLER ---
+        window.onerror = function (msg, url, line, col, error) {
+            document.getElementById('error-log').innerText = `Error: ${msg}\nLine: ${line}`;
+            document.getElementById('error-log').classList.remove('hidden');
+            return false;
+        };
+
         // --- SUPABASE CONFIG (Valid FlowStack Keys) ---
         const supabaseUrl = 'https://mgoaydvrlelrwompqjph.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1nb2F5ZHZybGVscndvbXBxanBoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk1MjM2MzcsImV4cCI6MjA4NTA5OTYzN30.WGIJPXxL0QhBo3TpcTf8bNX9YMbVEtZztX1NtToZXRM';
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { storage: window.sessionStorage } });
+
+        let supabase;
+        try {
+            if (!window.supabase) throw new Error("Supabase SDK not loaded");
+            supabase = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { storage: window.sessionStorage } });
+        } catch (e) {
+            alert("CRITICAL ERROR: " + e.message);
+        }
 
         // --- STATE & VIEWS ---
         let currentUser = null;
@@ -137,10 +159,18 @@
         let activeObject = null;
 
         document.addEventListener('DOMContentLoaded', async () => {
-            const { data: { session } } = await supabase.auth.getSession();
-            if (session) { currentUser = session.user; renderDashboard(); }
-            else { renderLanding(); }
-            lucide.createIcons();
+            try {
+                if (!supabase) return; // Stop if init failed
+                const { data: { session } } = await supabase.auth.getSession();
+                if (session) { currentUser = session.user; renderDashboard(); }
+                else { renderLanding(); }
+                lucide.createIcons();
+            } catch (e) {
+                alert("Init Error: " + e.message);
+            } finally {
+                const loader = document.getElementById('loader');
+                if (loader) loader.style.display = 'none';
+            }
         });
 
         // --- RENDER FUNCTIONS ---
