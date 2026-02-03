@@ -134,12 +134,12 @@
                 // 1. Init Supabase
                 supabase = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { storage: window.sessionStorage } });
 
-                // 2. Check Auth (TEMPORARILY DISABLED FOR TESTING)
-                // const { data: { session } } = await supabase.auth.getSession();
-                // if (!session) {
-                //     window.location.href = '../index.html'; // Redirect to ROOT index if not logged in
-                //     return;
-                // }
+                // 2. Check Auth
+                const { data: { session } } = await supabase.auth.getSession();
+                if (!session) {
+                    window.location.href = '../index.html'; // Redirect to ROOT index if not logged in
+                    return;
+                }
 
                 // 3. Init UI
                 document.getElementById('loader').style.display = 'none';
