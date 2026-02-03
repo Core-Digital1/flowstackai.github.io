@@ -170,25 +170,39 @@
         let activeObject;
 
         window.onload = async () => {
+            console.log('[DEBUG] Starting initialization...');
             try {
                 // 1. Init Supabase
+                console.log('[DEBUG] Creating Supabase client...');
                 supabase = window.supabase.createClient(supabaseUrl, supabaseKey, { auth: { storage: window.sessionStorage } });
+                console.log('[DEBUG] Supabase client created successfully');
 
                 // 2. Check Auth
-                const { data: { session } } = await supabase.auth.getSession();
+                console.log('[DEBUG] Checking auth session...');
+                const { data: { session }, error } = await supabase.auth.getSession();
+                console.log('[DEBUG] Session check result:', { session, error });
                 if (!session) {
+                    console.log('[DEBUG] No session - redirecting to login...');
                     window.location.href = '../index.html';
                     return;
                 }
+                console.log('[DEBUG] Session valid, continuing...');
 
                 // 3. Init UI
+                console.log('[DEBUG] Hiding loader...');
                 document.getElementById('loader').style.display = 'none';
+                console.log('[DEBUG] Showing app...');
                 document.getElementById('app').classList.remove('hidden');
+                console.log('[DEBUG] Creating icons...');
                 lucide.createIcons();
+                console.log('[DEBUG] Initializing canvas...');
                 initCanvas();
+                console.log('[DEBUG] Setting default tool...');
                 setTool('elements');
+                console.log('[DEBUG] Init complete!');
 
             } catch (e) {
+                console.error('[DEBUG] ERROR:', e);
                 alert("Initialization Error: " + e.message);
             }
         };
