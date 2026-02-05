@@ -15,142 +15,123 @@
         }
 
         :root {
-            --primary-blue: #1a45c0;
-            --accent-blue: #2563eb;
+            --primary-blue: #2F5BFF;
+            --deep-blue: #1E3A8A;
+            --accent-blue: #3B82F6;
             --text-white: #ffffff;
-            --bg-glass: rgba(0, 0, 0, 0.4);
-            --radius-lg: 1.5rem;
-            --radius-md: 0.75rem;
+            --radius-pill: 100px;
+            --radius-lg: 16px;
             --max-width: 1200px;
         }
 
         body {
-            background-color: var(--primary-blue);
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--deep-blue) 100%);
             color: var(--text-white);
             min-height: 100vh;
             margin: 0;
             padding: 0;
-            line-height: 1.5;
-            overflow-x: hidden;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
+            width: 100%;
             max-width: var(--max-width);
             margin: 0 auto;
-            padding: 40px 24px;
-            position: relative;
+            padding: 0 24px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
         }
 
-        /* Header */
+        /* Header Logo */
         header {
+            width: 100%;
+            padding: 40px 0;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 0;
-            margin-bottom: 60px;
+            justify-content: center;
+            position: absolute;
+            top: 0;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 800;
-            text-decoration: none;
-            color: white;
-        }
-
-        .logo-box {
-            background: white;
-            padding: 8px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .logo-box img {
-            width: 24px;
-            height: 24px;
-        }
-
-        .hamburger {
-            font-size: 24px;
-            cursor: pointer;
-            opacity: 0.8;
-        }
-
-        /* Hero */
-        .hero {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .hero h1 {
-            font-size: 56px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 24px;
-            letter-spacing: -2px;
-        }
-
-        .hero h1 span {
             color: #ffffff;
+            text-decoration: none;
+            letter-spacing: -1px;
         }
 
-        .hero-subtitle {
+        /* Hero Content */
+        .hero-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 900px;
+            margin-top: 80px;
+        }
+
+        h1 {
+            font-size: 64px;
+            font-weight: 900;
+            line-height: 1.05;
+            margin: 0 0 20px 0;
+            letter-spacing: -3px;
+        }
+
+        .subtitle {
             font-size: 20px;
-            opacity: 0.9;
-            margin-bottom: 60px;
             font-weight: 500;
+            opacity: 0.85;
+            margin-bottom: 60px;
         }
 
-        /* Testimonial & Mockup */
+        /* Visual Composition */
         .hero-visual {
             position: relative;
-            margin: 80px auto;
-            max-width: 700px;
+            width: 100%;
+            max-width: 800px;
+            margin: 40px 0;
         }
 
-        .mockup-main {
+        .mockup-img {
             width: 100%;
             height: auto;
-            display: block;
+            filter: drop-shadow(0 20px 50px rgba(0, 0, 0, 0.3));
         }
 
-        .lorena-box {
+        /* Lorena Card Overlay */
+        .lorena-card {
             position: absolute;
-            bottom: -40px;
+            bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 24px 32px;
-            border-radius: 16px;
-            width: calc(100% - 40px);
-            max-width: 500px;
+            border-radius: var(--radius-lg);
+            width: 90%;
+            max-width: 480px;
             text-align: left;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
 
-        .lorena-header {
+        .lorena-info {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            opacity: 0.8;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: rgba(255, 255, 255, 0.8);
-        }
-
-        .quote-icon {
-            font-size: 32px;
-            line-height: 1;
-            opacity: 0.3;
-            font-family: serif;
         }
 
         .lorena-quote {
@@ -159,113 +140,73 @@
             line-height: 1.4;
         }
 
-        /* Trust Signals */
-        .trust-hero {
+        /* Trust row */
+        .trust-indicators {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 40px;
-            margin-top: 120px;
+            gap: 60px;
             flex-wrap: wrap;
+            margin: 40px 0;
+            opacity: 0.9;
         }
 
-        .stat-group {
+        .trust-item {
             display: flex;
             align-items: center;
-            gap: 15px;
-        }
-
-        .stat-details {
-            text-align: center;
-        }
-
-        .stat-big {
-            font-size: 22px;
-            font-weight: 800;
-            display: block;
-        }
-
-        .stat-small {
-            font-size: 13px;
-            opacity: 0.7;
+            gap: 12px;
+            font-size: 14px;
             font-weight: 600;
         }
 
-        .laurel-svg {
-            width: 35px;
-            height: 55px;
-            opacity: 0.8;
-            fill: white;
-        }
-
-        .trustpilot-stars {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .tp-rating {
-            font-size: 14px;
-            font-weight: 700;
-            background: #00b67a;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-        }
-
-        .stars-row {
-            color: #00b67a;
+        .trust-icon {
             font-size: 24px;
-            letter-spacing: 2px;
         }
 
         /* CTA */
-        .global-cta {
-            margin-top: 80px;
+        .cta-container {
+            margin-top: 40px;
+            margin-bottom: 60px;
         }
 
-        .btn-jobescape {
-            background: #2563eb;
+        .btn-pill {
+            background: var(--accent-blue);
             color: white;
-            padding: 20px 80px;
-            font-size: 20px;
-            font-weight: 800;
+            padding: 16px 48px;
+            font-size: 18px;
+            font-weight: 700;
             border: none;
-            border-radius: 100px;
+            border-radius: var(--radius-pill);
             cursor: pointer;
-            transition: transform 0.2s, background 0.2s;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
-        .btn-jobescape:hover {
-            transform: translateY(-4px);
-            background: #1d4ed8;
+        .btn-pill:hover {
+            transform: scale(1.05);
+            background: #4F46E5;
         }
 
-        /* Features Grid Hide (Screenshot doesn't show it) */
+        /* Hide other sections */
         .features-grid,
         .methodology,
         #signupModal,
-        #loginModal {
+        #loginModal,
+        footer {
             display: none;
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 36px;
+            h1 {
+                font-size: 40px;
+                letter-spacing: -1.5px;
             }
 
-            .trust-hero {
+            .trust-indicators {
                 gap: 20px;
             }
 
-            .lorena-box {
-                padding: 20px;
-            }
-
-            .lorena-quote {
-                font-size: 16px;
+            .container {
+                gap: 20px;
             }
         }
 
@@ -599,96 +540,43 @@
 <body>
     <div class="container">
         <header>
-            <a href="#" class="logo">
-                <div class="logo-box">
-                    <img src="img/flowstack-icon.png" alt="FlowStack">
-                </div>
-                <span>Jobescape</span>
-            </a>
-            <div class="hamburger">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <line x1="3" y1="12" x2="21" y2="12"></line>
-                    <line x1="3" y1="6" x2="21" y2="6"></line>
-                    <line x1="3" y1="18" x2="21" y2="18"></line>
-                </svg>
-            </div>
+            <a href="#" class="logo">Jobescape</a>
         </header>
 
-        <section class="hero">
-            <h1>Discover an <span>AI-powered</span> online skill and earn $70k-$100k per year</h1>
-            <p class="hero-subtitle">Take the quiz. Start earning with zero experience.</p>
+        <section class="hero-stack">
+            <h1>Discover an AI-powered online skill and earn $70k-$100k per year</h1>
+            <p class="subtitle">Take the quiz. Start earning with zero experience.</p>
 
             <div class="hero-visual">
-                <img src="https://jobescape.me/img/chat/mockup-v3.png" alt="Jobescape Mockup" class="mockup-main">
+                <img src="https://jobescape.me/img/chat/mockup-v3.png" alt="Jobescape Mockup" class="mockup-img">
 
-                <div class="lorena-box">
-                    <div class="lorena-header">
+                <div class="lorena-card">
+                    <div class="lorena-info">
                         <span>Lorena, ex-housewife from NY</span>
-                        <span class="quote-icon">”</span>
+                        <span style="font-size: 24px; opacity: 0.5;">”</span>
                     </div>
                     <p class="lorena-quote">“I finally became financially independent with Jobescape”</p>
                 </div>
             </div>
 
-            <div class="trust-hero">
-                <!-- Group 1 -->
-                <div class="stat-group">
-                    <svg class="laurel-svg" viewBox="0 0 35 55">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
-                    <div class="stat-details">
-                        <span class="stat-big">120 000+</span>
-                        <span class="stat-small">new freelancers with us</span>
-                    </div>
-                    <svg class="laurel-svg" viewBox="0 0 35 55" style="transform: scaleX(-1);">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-icon">🌿</span>
+                    <span>120 000+ new freelancers with us</span>
                 </div>
-
-                <!-- Trustpilot -->
-                <div class="stat-group">
-                    <svg class="laurel-svg" viewBox="0 0 35 55">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
-                    <div class="trustpilot-stars">
-                        <span class="stat-big">4.6</span>
-                        <div class="stars-row">★★★★★</div>
-                        <span class="stat-small">on Trustpilot</span>
-                    </div>
-                    <svg class="laurel-svg" viewBox="0 0 35 55" style="transform: scaleX(-1);">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
+                <div class="trust-item">
+                    <span>4.6 ★★★★★ on Trustpilot</span>
                 </div>
-
-                <!-- Group 2 -->
-                <div class="stat-group">
-                    <svg class="laurel-svg" viewBox="0 0 35 55">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
-                    <div class="stat-details">
-                        <span class="stat-big">WIN WIN</span>
-                        <span class="stat-small">Money back guarantee</span>
-                    </div>
-                    <svg class="laurel-svg" viewBox="0 0 35 55" style="transform: scaleX(-1);">
-                        <path d="M5 25C5 15 15 5 25 5M5 25C5 35 15 45 25 45" stroke="currentColor" stroke-width="2"
-                            fill="none"></path>
-                    </svg>
+                <div class="trust-item">
+                    <span class="trust-icon">🛡️</span>
+                    <span>WIN WIN Money back guarantee</span>
                 </div>
             </div>
 
-            <div class="global-cta">
-                <button class="btn-jobescape" onclick="openSignupModal()">Get started</button>
+            <div class="cta-container">
+                <button class="btn-pill" onclick="openSignupModal()">Get started</button>
             </div>
         </section>
-
-        <footer>
-            <p>© 2025 FlowStack - Modern Income Education. All rights reserved.</p>
-        </footer>
     </div>
     <!-- Signup Modal -->
     <div id="signupModal" class="modal">
