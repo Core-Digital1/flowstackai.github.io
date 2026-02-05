@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -21,21 +21,15 @@
     <style>
         :root {
             --sidebar-width: 280px;
-            --primary-color: #6366f1;
-            --primary-glow: rgba(99, 102, 241, 0.4);
-            --secondary-color: #0f172a;
-            --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
-            --bg-dark: #020617;
-            --bg-muted: #0f172a;
-            --text-main: #ffffff;
-            --text-muted: #94a3b8;
-            --border-color: rgba(255, 255, 255, 0.1);
-            --card-bg: rgba(15, 23, 42, 0.7);
-            --card-border: 1px solid rgba(255, 255, 255, 0.1);
-            --radius-md: 0.75rem;
-            --radius-lg: 1.25rem;
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-glow: 0 0 15px rgba(99, 102, 241, 0.2);
+            --primary-color: #3b5bdb;
+            --secondary-color: #5f3dc4;
+            --accent-gradient: linear-gradient(135deg, #3b5bdb 0%, #5f3dc4 100%);
+            --bg-light: #f1f5f9;
+            --text-main: #0f172a;
+            --text-muted: #475569;
+            --border-color: #cbd5e1;
+            --card-bg: #ffffff;
+            --card-border: 2px solid #e2e8f0;
         }
 
         * {
@@ -46,7 +40,7 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background-color: var(--bg-light);
             color: var(--text-main);
             display: flex;
             min-height: 100vh;
@@ -55,7 +49,7 @@
         /* Sidebar */
         .sidebar {
             width: var(--sidebar-width);
-            background: var(--bg-muted);
+            background: white;
             border-right: 1px solid var(--border-color);
             display: flex;
             flex-direction: column;
@@ -168,7 +162,7 @@
         }
 
         .user-info:hover {
-            background: rgba(255, 255, 255, 0.05);
+            background: #f1f5f9;
         }
 
         .avatar {
@@ -217,10 +211,10 @@
             background: white;
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             display: none;
-            padding: 8px;
-            z-index: 101;
+            overflow: hidden;
+            z-index: 1000;
         }
 
         .user-dropdown.show {
@@ -1077,7 +1071,6 @@
             overflow: hidden;
             position: relative;
             margin-top: 30px;
-            /* Moved down */
         }
 
         .chat-view-header {
@@ -1129,7 +1122,7 @@
 
         .chip {
             padding: 8px 16px;
-            background: white;
+            background: #f1f5f9;
             border: 1px solid var(--border-color);
             border-radius: 20px;
             font-size: 0.875rem;
@@ -1353,8 +1346,7 @@
         }
 
         .prompt-card {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(10px);
+            background: white;
             border: 1px solid var(--border-color);
             border-radius: 16px;
             padding: 20px;
