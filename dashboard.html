@@ -3180,11 +3180,7 @@
             data.forEach((path, index) => {
                 const card = document.createElement('div');
                 card.className = `course-card ${index === 0 ? 'active' : ''}`;
-                if (path.id === 'content') {
-                    card.onclick = () => window.location.href = 'ClipForgeAI/';
-                } else {
-                    card.onclick = () => openDetails(path);
-                }
+                card.onclick = () => openDetails(path);
                 card.innerHTML = `
                     <div class="course-title">${path.title}</div>
                     <div class="course-meta">${path.shortDesc}</div>
