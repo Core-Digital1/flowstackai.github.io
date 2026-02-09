@@ -112,16 +112,19 @@
             width: 100%;
             max-width: 550px;
             margin: 20px auto 40px auto;
-            /* Enhanced Soft Edge Blending */
-            -webkit-mask-image: radial-gradient(circle at center, black 20%, transparent 75%);
-            mask-image: radial-gradient(circle at center, black 20%, transparent 75%);
+            /* Enhanced Seamless Blending */
+            background: var(--primary-blue);
+            mix-blend-mode: screen;
+            /* Blends the image's blue background with the site's blue */
+            -webkit-mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
+            mask-image: radial-gradient(circle at center, black 10%, transparent 70%);
         }
 
         .mockup-img {
             width: 100%;
             height: auto;
             display: block;
-            filter: saturate(1.1) contrast(1.1);
+            filter: saturate(1.1) contrast(1.1) brightness(1.05);
         }
 
         /* Lorena Card Overlay */
