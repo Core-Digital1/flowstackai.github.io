@@ -22,6 +22,10 @@
             --radius-pill: 100px;
             --radius-lg: 16px;
             --max-width: 1200px;
+            --bg-dark: #020617;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --text-muted: #94a3b8;
+            --accent-gradient: linear-gradient(135deg, #2F5BFF 0%, #1E3A8A 100%);
         }
 
         body {
@@ -286,14 +290,19 @@
             text-align: center;
             margin-top: 20px;
             font-size: 14px;
-            color: #666;
+            color: var(--text-muted);
         }
 
         .login-link a {
-            color: #4a6cf7;
-            text-decoration: none;
+            color: white;
+            text-decoration: underline;
             font-weight: bold;
             cursor: pointer;
+            transition: opacity 0.2s;
+        }
+
+        .login-link a:hover {
+            opacity: 0.8;
         }
 
         .message {
@@ -588,7 +597,7 @@
                 </div><button type="submit" class="submit-btn" id="loginBtn">LOG IN </button>
             </form>
             <div class="login-link"><a onclick="openForgotPasswordModal()">Forgot password?</a></div>
-            <div class="login-link">Don't have an account? <a onclick="openSignupModal()">Sign up</a>
+            <div class="login-link">Don't have an account? <a onclick="openSignupModal()">Create account</a>
             </div>
         </div>
     </div>
