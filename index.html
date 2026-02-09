@@ -110,23 +110,18 @@
         .hero-visual {
             position: relative;
             width: 100%;
-            max-width: 550px;
-            margin: 20px auto 40px auto;
-            background: var(--primary-blue);
-            /* Natural Seamless Blending (Rectilinear soft edges) */
-            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-                linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent),
-                linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-            -webkit-mask-composite: source-in;
-            mask-composite: intersect;
+            max-width: 800px;
+            margin: 40px auto;
+            /* Natural Seamless Blending - Subtle Top & Bottom Fade */
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
         }
 
         .mockup-img {
             width: 100%;
             height: auto;
             display: block;
-            filter: contrast(1.05);
+            filter: contrast(1.02);
         }
 
         /* Lorena Card Overlay */
