@@ -87,16 +87,18 @@
             align-items: center;
             max-width: 900px;
             margin: 0 auto;
-            margin-top: 120px;
-            /* Increased from 40px to avoid overlapping with absolute header logo */
+            margin-top: 100px;
+            /* Reduced from 120px to save vertical space */
             position: relative;
         }
 
         h1 {
-            font-size: 64px;
+            font-size: 56px;
+            /* Reduced from 64px for 100vh fit */
             font-weight: 900;
             line-height: 1.05;
-            margin: 0 0 20px 0;
+            margin: 0 0 15px 0;
+            /* Reduced from 20px */
             letter-spacing: -3px;
         }
 
@@ -104,17 +106,17 @@
             font-size: 20px;
             font-weight: 500;
             opacity: 0.85;
-            margin-bottom: 30px;
-            /* Reduced from 60px to pull image up */
+            margin-bottom: 20px;
+            /* Reduced to pull image up */
         }
 
         /* Visual Composition */
         .hero-visual {
             position: relative;
             width: 100%;
-            max-width: 650px;
-            /* Scaled down from 800px */
-            margin: 20px auto;
+            max-width: 500px;
+            /* Reduced from 650px to fit on one screen */
+            margin: 15px auto;
             /* Reduced vertical spacing */
         }
 
@@ -133,7 +135,8 @@
             justify-content: center;
             gap: 60px;
             flex-wrap: wrap;
-            margin: 40px 0;
+            margin: 20px 0;
+            /* Reduced from 40px */
             opacity: 0.9;
         }
 
@@ -151,8 +154,10 @@
 
         /* CTA */
         .cta-container {
-            margin-top: 40px;
-            margin-bottom: 60px;
+            margin-top: 20px;
+            /* Reduced from 40px */
+            margin-bottom: 40px;
+            /* Reduced from 60px */
         }
 
         .btn-pill {
