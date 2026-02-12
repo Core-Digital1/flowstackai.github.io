@@ -119,12 +119,23 @@
             /* Increased back for better premium feel */
             margin: 10px auto;
             /* Minimized vertical spacing */
+
+            /* Seamless Blending Fix */
+            mix-blend-mode: screen;
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent),
+                linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent),
+                linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            -webkit-mask-composite: source-in;
+            mask-composite: intersect;
         }
 
         .mockup-img {
             width: 100%;
             height: auto;
             display: block;
+            filter: contrast(1.1) brightness(1.1);
+            /* Compensate for screen blend mode */
         }
 
         /* Lorena Card Overlay */
