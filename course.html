@@ -753,6 +753,8 @@
         // --- INIT ---
         const urlParams = new URLSearchParams(window.location.search);
         const pathParam = urlParams.get('path');
+        const lessonParam = urlParams.get('lesson');
+
         if (pathParam && courses[pathParam]) {
             currentCourseId = pathParam;
         }
@@ -810,8 +812,19 @@
                 });
             }
 
-            // Load first lesson if none selected
-            if (!currentLesson && course.modules[0]?.lessons[0]) {
+            // Load requested lesson or first lesson
+            if (lessonParam && !currentLesson) {
+                let found = null;
+                course.modules.forEach(m => {
+                    const l = m.lessons.find(lesson => lesson.id === lessonParam);
+                    if (l) found = l;
+                });
+                if (found) {
+                    loadLesson(found);
+                } else if (course.modules[0]?.lessons[0]) {
+                    loadLesson(course.modules[0].lessons[0]);
+                }
+            } else if (!currentLesson && course.modules[0]?.lessons[0]) {
                 loadLesson(course.modules[0].lessons[0]);
             }
         }

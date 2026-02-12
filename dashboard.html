@@ -1994,26 +1994,8 @@
             </div>
 
             <div class="section-label" data-i18n="label_current_module" style="margin-top: 40px;">CURRENT MODULE</div>
-            <div class="module-group">
-                <div class="module-name">Module 1: Understand the Game</div>
-                <div class="lesson-count">6 Lessons</div>
-                <div class="module-list">
-                    <a href="course.html" class="lesson-item">
-                        <div class="lesson-icon" style="background: #eff6ff;"><i class="fas fa-play"></i></div>
-                        <div class="lesson-info">
-                            <div class="lesson-meta" style="font-size: 0.7rem; color: var(--text-muted);">Lesson 1</div>
-                            <div class="lesson-title">Why you're here</div>
-                        </div>
-                    </a>
-                    <div class="lesson-item" style="opacity: 0.6;">
-                        <div class="lesson-icon"><i class="fas fa-lock"></i></div>
-                        <div class="lesson-info">
-                            <div class="lesson-meta" style="font-size: 0.7rem; color: var(--text-muted);">Lesson 2</div>
-                            <div class="lesson-title">Learn how automations work</div>
-                        </div>
-                        <div class="lesson-status"><i class="fas fa-lock"></i></div>
-                    </div>
-                </div>
+            <div id="dashboardModulesContainer">
+                <!-- Modules will be populated by renderDashboardModules() -->
             </div>
         </div>
 
@@ -2318,7 +2300,7 @@
         </div>
     </div>
 
-
+    <script src="js/saas-curriculum.js"></script>
     <script>
         let currentLang = 'en';
         let selectedModel = 'ChatGPT';
@@ -3188,6 +3170,46 @@
                     </div>` : ''}
                 `;
                 grid.appendChild(card);
+            });
+
+            // Also render modules for the first course (SaaS)
+            renderDashboardModules();
+        }
+
+        function renderDashboardModules() {
+            const container = document.getElementById('dashboardModulesContainer');
+            if (!container) return;
+            container.innerHTML = '';
+
+            if (typeof saasCurriculum === 'undefined') {
+                console.warn('saasCurriculum not loaded');
+                return;
+            }
+
+            // Only show the first 3 modules by default to avoid overwhelming the dashboard
+            // Or show all? The user said "modules and lessons", let's show all for now but maybe truncated lessons?
+            // Let's show all modules but maybe make them collapsible in the future.
+
+            saasCurriculum.forEach(mod => {
+                const group = document.createElement('div');
+                group.className = 'module-group';
+
+                group.innerHTML = `
+                    <div class="module-name">${mod.title}</div>
+                    <div class="lesson-count">${mod.lessons.length} Lessons</div>
+                    <div class="module-list">
+                        ${mod.lessons.map((lesson, idx) => `
+                            <a href="course.html?path=saas&lesson=${lesson.id}" class="lesson-item">
+                                <div class="lesson-icon" style="background: #eff6ff;"><i class="fas fa-play"></i></div>
+                                <div class="lesson-info">
+                                    <div class="lesson-meta" style="font-size: 0.7rem; color: var(--text-muted);">Lesson ${idx + 1}</div>
+                                    <div class="lesson-title">${lesson.title}</div>
+                                </div>
+                            </a>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(group);
             });
         }
 
