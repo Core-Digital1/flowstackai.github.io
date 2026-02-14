@@ -719,7 +719,7 @@ const saasCurriculum = [
                     <h3>Elite Action Plan:</h3>
                     <ul>
                         <li><strong>Step 1:</strong> In your Supabase Dashboard, go to Authentication > Providers. Enable "Email" and "Google" (if you have a developer account).</li>
-                        <li><strong>Step 2:</strong> Set your "Site URL" and "Redirect URLs" so the user lands on your `/ dashboard.html` after a successful login.</li>
+                        <li><strong>Step 2:</strong> Set your "Site URL" and "Redirect URLs" so the user lands on your \`/dashboard.html\` after a successful login.</li>
                         <li><strong>Step 3:</strong> Test the "Magic Link" flow. See how easy it is to log in without a password. This is elite UX.</li>
                     </ul>
 
