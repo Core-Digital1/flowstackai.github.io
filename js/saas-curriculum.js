@@ -7,7 +7,7 @@ const saasCurriculum = [
                 title: '1.1 What is SaaS?',
                 duration: '10:00',
                 videoId: 'dQw4w9WgXcQ',
-                videoUrl: 'img/saas-intro.mp4',
+                videoUrl: 'https://youtu.be/Z79aieb-brk',
                 desc: `
                     <h3>The Context: The Pinnacle of Business Engineering</h3>
                     <p>SaaS (Software as a Service) is not just a technology stack; it is the pinnacle of modern business engineering. In the old world, software was a "product"—you built it, burned it onto a disk, and sold it once. In the SaaS world, software is a <strong>utility</strong>, like electricity or water. You are providing an ongoing solution to a persistent problem, delivered via the cloud, and accessible from anywhere on the planet.</p>
