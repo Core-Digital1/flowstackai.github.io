@@ -2259,7 +2259,6 @@
         </div>
     </main>
 
-    <div id="detailsOverlay" class="details-overlay"></div>
 
     <!-- AI Model Selection Modal -->
     <div class="model-modal-overlay" id="modelModalOverlay" onclick="toggleModelModal(event)">
@@ -3567,25 +3566,24 @@
         async function initDashboard() {
             console.log("Starting dashboard initialization...");
             try {
-                console.log("Rendering Grid...");
-                renderGrid();
-
-                console.log("Rendering Prompts...");
-                renderPrompts();
-
-                console.log("Initializing Chat System...");
-                initChatSystem();
-
+                // Auth MUST come first — it makes mainContent visible
                 console.log("Checking Authentication...");
                 await checkAuth();
-
-                console.log("Dashboard initialization complete.");
+                console.log("Auth check complete.");
             } catch (err) {
-                console.error("CRITICAL: Dashboard Initialization Failed:", err);
-                // Force hide loader so user isn't stuck
+                console.error("CRITICAL: Auth check failed:", err);
+                // Force hide loader so user isn't stuck on Loading screen
                 const loader = document.getElementById('loading');
                 if (loader) loader.style.display = 'none';
+                return; // If auth fails, don't bother rendering
             }
+
+            // Render components individually — each in its own try-catch
+            try { console.log("Rendering Grid..."); renderGrid(); } catch (e) { console.error("Error in renderGrid:", e); }
+            try { console.log("Rendering Prompts..."); renderPrompts(); } catch (e) { console.error("Error in renderPrompts:", e); }
+            try { console.log("Initializing Chat System..."); initChatSystem(); } catch (e) { console.error("Error in initChatSystem:", e); }
+
+            console.log("Dashboard initialization complete.");
         }
 
         // Run Init
