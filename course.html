@@ -117,11 +117,13 @@
             display: block;
         }
 
-        .video-player-section iframe {
+        .video-player-section iframe,
+        .video-player-section video {
             width: 100%;
             aspect-ratio: 16 / 9;
             border: none;
             display: block;
+            background: #000;
         }
 
         /* Course Container */
@@ -639,7 +641,10 @@
         <div class="main-content">
             <!-- Video Player -->
             <div class="video-player-section" id="videoPlayer">
-                <iframe id="videoIframe" src="" allowfullscreen></iframe>
+                <video id="videoElement" controls controlsList="nodownload">
+                    <source id="videoSource" src="" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
 
             <!-- Tabs & Content -->
@@ -843,12 +848,15 @@
 
             // Video Player
             const videoSection = document.getElementById('videoPlayer');
-            const videoIframe = document.getElementById('videoIframe');
+            const videoElement = document.getElementById('videoElement');
+            const videoSource = document.getElementById('videoSource');
+
             if (lesson.videoUrl) {
-                videoIframe.src = lesson.videoUrl;
+                videoSource.src = lesson.videoUrl;
+                videoElement.load(); // Reload video with new source
                 videoSection.classList.add('active');
             } else {
-                videoIframe.src = '';
+                videoSource.src = '';
                 videoSection.classList.remove('active');
             }
 
