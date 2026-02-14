@@ -3147,70 +3147,82 @@
         }
 
         function renderGrid() {
-            const grid = document.getElementById('coursesGrid');
-            if (!grid) {
-                console.error("coursesGrid element not found!");
-                return;
+            try {
+                const grid = document.getElementById('coursesGrid');
+                if (!grid) {
+                    console.error("coursesGrid element not found!");
+                    return;
+                }
+                grid.innerHTML = '';
+
+                if (typeof contentData === 'undefined' || !contentData[currentLang || 'en']) {
+                    throw new Error(`contentData for ${currentLang} is missing or undefined`);
+                }
+
+                const data = contentData[currentLang] || contentData['en'];
+                const t = translations[currentLang] || translations['en'];
+
+                data.forEach((path, index) => {
+                    const card = document.createElement('div');
+                    card.className = `course-card ${index === 0 ? 'active' : ''}`;
+                    card.onclick = () => openDetails(path);
+                    card.innerHTML = `
+                        <div class="course-title">${path.title}</div>
+                        <div class="course-meta">${path.shortDesc}</div>
+                        ${index === 0 ? `
+                        <div class="progress-bar-mini" style="height: 4px; background: #e2e8f0; border-radius: 2px; margin-top: 10px; position: relative;">
+                            <div style="width: 11%; height: 100%; background: var(--accent-gradient); border-radius: 2px;"></div>
+                        </div>` : ''}
+                    `;
+                    grid.appendChild(card);
+                });
+
+                // Also render modules for the first course (SaaS)
+                renderDashboardModules();
+            } catch (err) {
+                console.error("Error in renderGrid:", err);
             }
-            grid.innerHTML = '';
-
-            const data = contentData[currentLang] || contentData['en'];
-            const t = translations[currentLang] || translations['en'];
-
-            data.forEach((path, index) => {
-                const card = document.createElement('div');
-                card.className = `course-card ${index === 0 ? 'active' : ''}`;
-                card.onclick = () => openDetails(path);
-                card.innerHTML = `
-                    <div class="course-title">${path.title}</div>
-                    <div class="course-meta">${path.shortDesc}</div>
-                    ${index === 0 ? `
-                    <div class="progress-bar-mini" style="height: 4px; background: #e2e8f0; border-radius: 2px; margin-top: 10px; position: relative;">
-                        <div style="width: 11%; height: 100%; background: var(--accent-gradient); border-radius: 2px;"></div>
-                    </div>` : ''}
-                `;
-                grid.appendChild(card);
-            });
-
-            // Also render modules for the first course (SaaS)
-            renderDashboardModules();
         }
 
         function renderDashboardModules() {
-            const container = document.getElementById('dashboardModulesContainer');
-            if (!container) return;
-            container.innerHTML = '';
+            try {
+                const container = document.getElementById('dashboardModulesContainer');
+                if (!container) return;
+                container.innerHTML = '';
 
-            if (typeof saasCurriculum === 'undefined') {
-                console.warn('saasCurriculum not loaded');
-                return;
+                if (typeof saasCurriculum === 'undefined') {
+                    console.warn('saasCurriculum not loaded');
+                    return;
+                }
+
+                saasCurriculum.forEach(mod => {
+                    if (!mod.lessons) {
+                        console.error("Module missing lessons property:", mod);
+                        return;
+                    }
+                    const group = document.createElement('div');
+                    group.className = 'module-group';
+
+                    group.innerHTML = `
+                        <div class="module-name">${mod.title}</div>
+                        <div class="lesson-count">${mod.lessons.length} Lessons</div>
+                        <div class="module-list">
+                            ${mod.lessons.map((lesson, idx) => `
+                                <a href="course.html?path=saas&lesson=${lesson.id}" class="lesson-item">
+                                    <div class="lesson-icon" style="background: #eff6ff;"><i class="fas fa-play"></i></div>
+                                    <div class="lesson-info">
+                                        <div class="lesson-meta" style="font-size: 0.7rem; color: var(--text-muted);">Lesson ${idx + 1}</div>
+                                        <div class="lesson-title">${lesson.title}</div>
+                                    </div>
+                                </a>
+                            `).join('')}
+                        </div>
+                    `;
+                    container.appendChild(group);
+                });
+            } catch (err) {
+                console.error("Error in renderDashboardModules:", err);
             }
-
-            // Only show the first 3 modules by default to avoid overwhelming the dashboard
-            // Or show all? The user said "modules and lessons", let's show all for now but maybe truncated lessons?
-            // Let's show all modules but maybe make them collapsible in the future.
-
-            saasCurriculum.forEach(mod => {
-                const group = document.createElement('div');
-                group.className = 'module-group';
-
-                group.innerHTML = `
-                    <div class="module-name">${mod.title}</div>
-                    <div class="lesson-count">${mod.lessons.length} Lessons</div>
-                    <div class="module-list">
-                        ${mod.lessons.map((lesson, idx) => `
-                            <a href="course.html?path=saas&lesson=${lesson.id}" class="lesson-item">
-                                <div class="lesson-icon" style="background: #eff6ff;"><i class="fas fa-play"></i></div>
-                                <div class="lesson-info">
-                                    <div class="lesson-meta" style="font-size: 0.7rem; color: var(--text-muted);">Lesson ${idx + 1}</div>
-                                    <div class="lesson-title">${lesson.title}</div>
-                                </div>
-                            </a>
-                        `).join('')}
-                    </div>
-                `;
-                container.appendChild(group);
-            });
         }
 
         function openDetails(path) {
@@ -3320,29 +3332,34 @@
         });
 
         async function checkAuth() {
-            const { data: { session } } = await supabaseClient.auth.getSession();
-            if (!session) {
-                window.location.href = 'index.html';
-                return;
+            try {
+                const { data: { session } } = await supabaseClient.auth.getSession();
+                if (!session) {
+                    window.location.href = 'index.html';
+                    return;
+                }
+                // Update UI
+                if (document.getElementById('loading')) document.getElementById('loading').style.display = 'none';
+                if (document.getElementById('sidebar')) document.getElementById('sidebar').style.display = 'flex';
+                if (document.getElementById('mainContent')) document.getElementById('mainContent').style.display = 'block';
+
+                const email = session.user.email;
+                const metadata = session.user.user_metadata || {};
+                const name = metadata.full_name || email.split('@')[0];
+
+                const nameDisplay = document.getElementById('userNameDisplay');
+                const emailDisplay = document.getElementById('userEmailDisplay');
+                const settingsName = document.getElementById('settingsName');
+                const settingsEmail = document.getElementById('settingsEmail');
+
+                if (nameDisplay) nameDisplay.textContent = metadata.full_name || (name.charAt(0).toUpperCase() + name.slice(1));
+                if (emailDisplay) emailDisplay.textContent = email;
+                if (settingsName) settingsName.value = metadata.full_name || (name.charAt(0).toUpperCase() + name.slice(1));
+                if (settingsEmail) settingsEmail.value = email;
+            } catch (err) {
+                console.error("Error in checkAuth:", err);
+                throw err; // Re-throw to be caught by initDashboard
             }
-            // Update UI
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('sidebar').style.display = 'flex';
-            document.getElementById('mainContent').style.display = 'block';
-
-            const email = session.user.email;
-            const metadata = session.user.user_metadata || {};
-            const name = metadata.full_name || email.split('@')[0];
-
-            const nameDisplay = document.getElementById('userNameDisplay');
-            const emailDisplay = document.getElementById('userEmailDisplay');
-            const settingsName = document.getElementById('settingsName');
-            const settingsEmail = document.getElementById('settingsEmail');
-
-            if (nameDisplay) nameDisplay.textContent = metadata.full_name || (name.charAt(0).toUpperCase() + name.slice(1));
-            if (emailDisplay) emailDisplay.textContent = email;
-            if (settingsName) settingsName.value = metadata.full_name || (name.charAt(0).toUpperCase() + name.slice(1));
-            if (settingsEmail) settingsEmail.value = email;
         }
 
         async function handleLogout() {
@@ -3544,12 +3561,33 @@
 
         // sendAiMessage is now defined globally above
 
-        // Initialize Prompt Library
-        renderPrompts();
-        initChatSystem(); // Initialize Chat History
+        async function initDashboard() {
+            console.log("Starting dashboard initialization...");
+            try {
+                console.log("Rendering Grid...");
+                renderGrid();
 
-        // Supabase Init
-        checkAuth();
+                console.log("Rendering Prompts...");
+                renderPrompts();
+
+                console.log("Initializing Chat System...");
+                initChatSystem();
+
+                console.log("Checking Authentication...");
+                await checkAuth();
+
+                console.log("Dashboard initialization complete.");
+            } catch (err) {
+                console.error("CRITICAL: Dashboard Initialization Failed:", err);
+                // Force hide loader so user isn't stuck
+                const loader = document.getElementById('loading');
+                if (loader) loader.style.display = 'none';
+            }
+        }
+
+        // Run Init
+        initDashboard();
+
         supabaseClient.auth.onAuthStateChange((event, session) => {
             if (event === 'SIGNED_OUT') window.location.href = 'index.html';
         });
