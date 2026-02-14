@@ -102,6 +102,28 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
+        /* Video Player */
+        .video-player-section {
+            display: none;
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
+            background: #000;
+        }
+
+        .video-player-section.active {
+            display: block;
+        }
+
+        .video-player-section iframe {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            border: none;
+            display: block;
+        }
+
         /* Course Container */
         .course-container {
             display: grid;
@@ -615,7 +637,10 @@
 
         <!-- Left: Content Area -->
         <div class="main-content">
-            <!-- Tabs & Content -->
+            <!-- Video Player -->
+            <div class="video-player-section" id="videoPlayer">
+                <iframe id="videoIframe" src="" allowfullscreen></iframe>
+            </div>
 
             <!-- Tabs & Content -->
             <div class="tabs-container">
@@ -816,7 +841,16 @@
             const activeEl = document.getElementById(`lesson-${lesson.id}`);
             if (activeEl) activeEl.classList.add('active');
 
-            // Video removed per user request
+            // Video Player
+            const videoSection = document.getElementById('videoPlayer');
+            const videoIframe = document.getElementById('videoIframe');
+            if (lesson.videoUrl) {
+                videoIframe.src = lesson.videoUrl;
+                videoSection.classList.add('active');
+            } else {
+                videoIframe.src = '';
+                videoSection.classList.remove('active');
+            }
 
             // Update Notes Tab
             document.getElementById('tab-notes').innerHTML = `
