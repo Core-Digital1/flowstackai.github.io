@@ -641,10 +641,9 @@
         <div class="main-content">
             <!-- Video Player -->
             <div class="video-player-section" id="videoPlayer">
-                <video id="videoElement" controls controlsList="nodownload">
-                    <source id="videoSource" src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+                <div id="videoContainer">
+                    <!-- Dynamic Content: Video Tag or Iframe -->
+                </div>
             </div>
 
             <!-- Tabs & Content -->
@@ -848,15 +847,36 @@
 
             // Video Player
             const videoSection = document.getElementById('videoPlayer');
-            const videoElement = document.getElementById('videoElement');
-            const videoSource = document.getElementById('videoSource');
+            const videoContainer = document.getElementById('videoContainer');
 
             if (lesson.videoUrl) {
-                videoSource.src = lesson.videoUrl;
-                videoElement.load(); // Reload video with new source
                 videoSection.classList.add('active');
+
+                // Check if YouTube
+                if (lesson.videoUrl.includes('youtube.com') || lesson.videoUrl.includes('youtu.be')) {
+                    // Extract Video ID
+                    let videoId = '';
+                    if (lesson.videoUrl.includes('youtu.be')) {
+                        videoId = lesson.videoUrl.split('/').pop().split('?')[0];
+                    } else {
+                        const urlParams = new URL(lesson.videoUrl).searchParams;
+                        videoId = urlParams.get('v');
+                    }
+
+                    videoContainer.innerHTML = `
+                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/${videoId}?rel=0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="width: 100%; aspect-ratio: 16/9; display: block; border-radius: 12px;"></iframe>
+                    `;
+                } else {
+                    // Local Video
+                    videoContainer.innerHTML = `
+                        <video controls controlsList="nodownload" style="width: 100%; aspect-ratio: 16/9; display: block; background: #000; border-radius: 12px;">
+                            <source src="${lesson.videoUrl}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    `;
+                }
             } else {
-                videoSource.src = '';
+                videoContainer.innerHTML = '';
                 videoSection.classList.remove('active');
             }
 
