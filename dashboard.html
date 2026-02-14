@@ -1805,8 +1805,9 @@
 
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            /* Reduced gap */
             align-items: stretch;
         }
 
@@ -1922,6 +1923,28 @@
 
             .chat-view-container.sidebar-closed .chat-sidebar {
                 transform: translateX(-100%);
+            }
+        }
+
+        /* Mobile Responsive Adjustments for Overlay */
+        @media (max-width: 768px) {
+            .details-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .steps-container,
+            .packages-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .path-icon {
+                margin-bottom: 15px;
+            }
+
+            .details-content {
+                padding: 20px;
+                width: 95%;
             }
         }
     </style>
