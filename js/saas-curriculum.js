@@ -8,33 +8,34 @@ const saasCurriculum = [
                 duration: '10:00',
                 videoId: 'dQw4w9WgXcQ',
                 videoUrl: 'https://youtu.be/Z79aieb-brk',
-                desc: `
-                    <h3>The Context: The Pinnacle of Business Engineering</h3>
-                    <p>SaaS (Software as a Service) is not just a technology stack; it is the pinnacle of modern business engineering. In the old world, software was a "product"—you built it, burned it onto a disk, and sold it once. In the SaaS world, software is a <strong>utility</strong>, like electricity or water. You are providing an ongoing solution to a persistent problem, delivered via the cloud, and accessible from anywhere on the planet.</p>
-                    
-                    <p>As a SaaS founder, you aren't just selling code; you are selling an <strong>outcome</strong> that users subscribe to. This shift from "ownership" to "access" is what makes SaaS the most powerful wealth-creation engine in history. It allows for a direct, continuous relationship with your customer, where every update you push adds immediate value to their existing subscription. You are building an asset that works 24/7, serving customers in timezones you've never visited, all managed from a single dashboard.</p>
+                pages: [
+                    `<h3>The Context: The Pinnacle of Business Engineering</h3>
+                    <p>SaaS (Software as a Service) is not just a technology stack; it is the pinnacle of modern business engineering.</p>
+                    <ul>
+                        <li><strong>Old World:</strong> Software was a "product" — build, burn to disk, sell once.</li>
+                        <li><strong>SaaS World:</strong> Software is a "utility" (like electricity). Continuous value, delivered via cloud.</li>
+                    </ul>
+                    <p><strong>The Shift:</strong> You aren't selling code; you are selling an <strong>outcome</strong>. This shift from "ownership" to "access" creates the most powerful wealth-creation engine in history.</p>`,
 
-                    <h3>Key Insights:</h3>
+                    `<h3>Key Insights</h3>
                     <ul>
                         <li><strong>Outcome-Based Economy:</strong> Users don't want "software"; they want their problem solved. Focus on the result.</li>
                         <li><strong>Infrastructure as a Service:</strong> The cloud allows you to scale to millions of users without owning a single server.</li>
                         <li><strong>The Relationship Model:</strong> Your goal is to keep the user successful so they remain a subscriber indefinitely.</li>
                     </ul>
-
                     <div class="highlight-box">
-                        <strong>Practical Example:</strong> Adobe used to sell Photoshop for $600 on a disk. Now, they sell Creative Cloud for $50/month. They reached more users, eliminated piracy, and created a multibillion-dollar recurring revenue stream that never stops.
-                    </div>
+                        <strong>Practical Example:</strong> Adobe used to sell Photoshop for $600. Now Creative Cloud is $50/mo. Result: More users, no piracy, billion-dollar recurring revenue.
+                    </div>`,
 
-                    <h3>Elite Action Plan:</h3>
+                    `<h3>Elite Action Plan</h3>
+                    <p>Identify 5 apps on your phone and categorize them:</p>
                     <ul>
-                        <li><strong>Step 1:</strong> Identify 5 apps on your phone. Categorize them: Which are SaaS (subscription) vs. legacy (one-time)?</li>
-                        <li><strong>Step 2:</strong> For one SaaS app, write down the specific "Outcome" it provides (e.g., "Peace of mind regarding fitness" vs. "A workout tracker").</li>
-                        <li><strong>Step 3:</strong> Research "Salesforce" — identify how they transitioned from a startup to the CRM king.</li>
-                    </ul>
+                        <li><strong>Step 1:</strong> Which are SaaS (subscription) vs. legacy (one-time)?</li>
+                        <li><strong>Step 2:</strong> For the SaaS apps, identifying the "outcome" they sell (e.g., Spotify sells "access to all music," not MP3s).</li>
+                        <li><strong>Step 3:</strong> Brainstorm one problem in your industry that is currently solved by a "product" but could be a "service."</li>
+                    </ul>`
+                ],
 
-                    <h3>Success Metric:</h3>
-                    <p>You can explain the difference between a software "product" and a software "utility" to a non-technical person in under 60 seconds.</p>
-                `
             },
             {
                 id: '1.2',
@@ -42,7 +43,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Magic of MRR</h3>
+    < h3 > The Context: The Magic of MRR</h3 >
                     <p>If you want true freedom, SaaS stands alone. The magic word is <strong>MRR (Monthly Recurring Revenue)</strong>. Unlike traditional businesses where you start every month at zero and have to chase new sales, a SaaS business builds upon itself. If you end January with $1,000 in subscriptions, you start February with $1,000 (minus churn). This compound effect is how small teams reach $10k, $50k, or even $100k per month with elite profit margins.</p>
                     
                     <p>SaaS is infinitely scalable. In a service-based business (like consulting), more customers mean more work-hours for you. Deep in the SaaS model, the marginal cost of the 1,000th user is near zero. The software handles the "work" while your input remains constant. This decoupling of <strong>time from money</strong> is the ultimate goal of the elite builder. Furthermore, SaaS companies command the highest valuation multiples (5x-10x annual revenue), making them the perfect financial instrument for building generational wealth.</p>
@@ -67,7 +68,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have calculated your "Freedom Number" and know exactly how many subscribers you need to reach it.</p>
-                `
+`
             },
             {
                 id: '1.3',
@@ -75,7 +76,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Choosing Your Arena</h3>
+    < h3 > The Context: Choosing Your Arena</h3 >
                     <p>Not all SaaS is created equal. You must decide where to play: B2B, B2C, AI SaaS, or Niche SaaS. Choosing the right intersection is critical for early success. **B2B (Business-to-Business)** focuses on solving professional problems. Businesses have higher budgets, lower churn, and look at software as an investment. **B2C (Business-to-Consumer)** targets individuals. While the market is huge, it often suffers from higher friction and lower price points.</p>
                     
                     <p>The new gold mine is **AI SaaS**. By leveraging LLMs (Large Language Models), you can build tools that perform complex cognitive tasks—writing, coding, or data analysis—at a fraction of the cost. Finally, **Niche SaaS** (Micro-SaaS) involves going narrow (e.g., tools for plumbers). By solving a specific, neglected problem, you eliminate competition and become the "must-have" tool for that community.</p>
@@ -101,7 +102,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Problem-Heavy" niche and can define its primary B2B or B2C characteristics.</p>
-                `
+`
             },
             {
                 id: '1.4',
@@ -109,7 +110,7 @@ const saasCurriculum = [
                 duration: '10:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Pricing as a Product Feature</h3>
+    < h3 > The Context: Pricing as a Product Feature</h3 >
                     <p>Pricing is not just a number; it's a core product feature. The way you charge dictates your growth rate, your target customer profile, and even your product's daily usage. Elite founders align their pricing with the <strong>value</strong> the user receives. If your tool saves a business $5,000/month, charging $500 is an easy sell. If it only saves $10, charging $20 is impossible.</p>
                     
                     <p>You must choose a model that scales with your user's success. The best pricing models have "Expansion Revenue" built-in—meaning the customer naturally pays you more as they get more value (e.g., more users, more data, or more AI generations).</p>
@@ -135,7 +136,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a draft pricing page with clear tiers and a defined Value Metric for scaling revenue.</p>
-                `
+`
             },
             {
                 id: '1.5',
@@ -143,7 +144,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Lego-Block Architecture</h3>
+    < h3 > The Context: Lego - Block Architecture</h3 >
                     <p>Modern SaaS development is like playing with Lego blocks. You don't need to reinvent the wheel; you need to be an <strong>architect</strong> who knows how to connect specialized components. Elite builders don't spend months building a custom "Login System" or "Database Engine"—they use world-class infrastructure to ship in days.</p>
                     
                     <p>Your goal is to build the "Unique Value" (the core logic of your app) and outsource the "Generic Infrastructure" (payments, authentication, database) to proven providers. This strategy reduces your time-to-market by 80%.</p>
@@ -169,7 +170,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You can identify the 4 primary components of your SaaS and know exactly which third-party tools will handle each.</p>
-                `
+`
             },
             {
                 id: '1.6',
@@ -177,7 +178,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Learning from the Elite</h3>
+    < h3 > The Context: Learning from the Elite</h3 >
                     <p>To be the best, you must study the patterns of winners. Success in SaaS rarely comes from "fancy code"; it comes from <strong>Friction Spotting</strong>. Modern giants succeed because they find a process that is currently manual, expensive, or annoying, and they make it automatic, cheap, and delightful.</p>
                     
                     <p>In this lesson, we deconstruct how solo founders reached $50k/mo MRR by focusing on single, high-pain problems. We look for the "Pattern of Scale": Simple UI + High Utility + Automated delivery.</p>
@@ -209,7 +210,7 @@ const saasCurriculum = [
 
                     <h3>Expected Outcome:</h3>
                     <p>The ability to spot "value drivers" in successful companies and apply them to your own.</p>
-                `
+`
             }
         ]
     },
@@ -222,7 +223,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Start with Pain, Not Code</h3>
+    < h3 > The Context: Start with Pain, Not Code</h3 >
                     <p>The single biggest mistake SaaS founders make is building a "feature in search of a problem." You might have a brilliant idea for a new AI tool, but if it doesn't solve a burning, daily pain for a specific group of people, no one will pay for it. Elite founders work backward from <strong>Pain</strong>. They look for where people are already spending money, where they are complaining, and where they are wasting hours of their lives on manual tasks.</p>
                     
                     <p>As an elite builder, your goal is to become a "Problem Detective." You aren't looking for "cool" ideas; you are looking for broken processes that people are desperate to fix. If people are complaining about something, there is a business waiting to be built.</p>
@@ -247,7 +248,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Daily Pain" and can describe the specific group of people who are suffering from it.</p>
-                `
+`
             },
             {
                 id: '2.2',
@@ -255,7 +256,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Painkillers vs. Vitamins</h3>
+    < h3 > The Context: Painkillers vs.Vitamins</h3 >
                     <p>Not all problems are equal. In the SaaS world, you want to build a "Painkiller" (something mandatory) rather than a "Vitamin" (something nice-to-have). During a recession, people cancel their vitamins, but they keep paying for their painkillers. B2B (Business-to-Business) problems are almost always "Painkiller" opportunities because they directly affect the bottom line.</p>
                     
                     <p>A profitable problem must be <strong>Frequent</strong>, <strong>Expensive</strong>, and <strong>Frustrating</strong>. If the user only has the problem once a year, you don't have a SaaS. If the problem doesn't cost them money, they won't pay you. If the problem isn't frustrating, they won't switch from their current method.</p>
@@ -280,7 +281,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have filtered your ideas and identified the one with the highest "Economic ROI" for the customer.</p>
-                `
+`
             },
             {
                 id: '2.3',
@@ -288,7 +289,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Lie of "Talking to Users"</h3>
+    < h3 > The Context: The Lie of "Talking to Users"</h3 >
                     <p>People lie to be polite. If you ask a friend "Do you like my idea?", they will almost always say yes. This is <strong>False Validation</strong>. The only true validation in SaaS is <strong>Commitment</strong>. You need to see if people will give you their money, their time, or their reputation before you spend months building.</p>
                     
                     <p>Elite builders don't build the product to see if people want it. They see if people want it, and then they build the product. Your goal is to reach "Product-Market Fit" in your mind before a single line of code is written.</p>
@@ -314,11 +315,11 @@ const saasCurriculum = [
                     <h3>Success Metric:</h3>
                     <p>You have a list of at least 10 people who have explicitly stated they want your solution.</p>
                         <li>Message 5 potential users. Ask: "If I built this to save you X, would you pay $Y?"</li>
-                    </ul>
+                    </ul >
 
                     <h3>Expected Outcome:</h3>
                     <p>A proven method for verifying market demand before wasting resources on development.</p>
-                `
+`
             },
             {
                 id: '2.4',
@@ -326,7 +327,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Drilling Down to Dominance</h3>
+    < h3 > The Context: Drilling Down to Dominance</h3 >
                     <p>If you compete with everyone, you win no one. In the world of SaaS, "Niche is Rich." Many founders are afraid to "go narrow" because they think they are losing potential customers. In reality, by speaking the specific, granular language of one group, you become their default choice. You eliminate competition because generic tools don't understand the unique workflows of a niche.</p>
                     
                     <p>When you are a niche leader, you can charge higher prices because you are a specialized solution. A generic "Booking App" might cost $20/mo, but a "Booking App for High-End Med-Spas" can cost $200/mo because it handles specific medical compliance and inventory that the generic app misses.</p>
@@ -351,7 +352,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Level 3" niche and can list 3 specific terms from their professional language.</p>
-                `
+`
             },
             {
                 id: '2.5',
@@ -359,7 +360,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Exploiting the Behemoths</h3>
+    < h3 > The Context: Exploiting the Behemoths</h3 >
                     <p>Don't fear competition; use it as fuel. If a market has established competitors, it is 100% proof that there is money to be made. However, big competitors (the "Behemoths") have a weakness: they are slow, bloated, and usually built on old technology from 10 years ago. Your goal as an elite builder is to find the <strong>Gap</strong> they've left behind.</p>
                     
                     <p>Big companies try to please everyone, which makes their software complex and annoying to use. By being the "Lean, Modern" alternative, you can capture the segment of their users who are fed up with the bloat.</p>
@@ -384,7 +385,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Major Weakness" in a top competitor that you can solve better.</p>
-                `
+`
             },
             {
                 id: '2.6',
@@ -392,7 +393,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Eliminate Emotion from Decisions</h3>
+    < h3 > The Context: Eliminate Emotion from Decisions</h3 >
                     <p>Don't build what's "fun" or "cool"; build what's <strong>Profitable</strong>. Many founders fail because they follow their ego instead of the data. To succeed as an elite builder, you must use a cold, objective ranking system. We use the **PIE System** (Pain, Implementation, Economics) to score every idea before committing a single hour of code.</p>
                     
                     <p>This system forces you to look at the "hard truths" of a business: Can I actually build this? And will the customer actually pay enough to make it worth it? Emotions fade, but a business with high Economics and low Implementation complexity is a winner every time.</p>
@@ -417,7 +418,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a clear, data-backed Score for your top 3 ideas and have selected your "Winner" based on logic, not feelings.</p>
-                `
+`
             }
         ]
     },
@@ -430,7 +431,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Utility Core</h3>
+    < h3 > The Context: The Utility Core</h3 >
                     <p>A SaaS isn't just a list of random features; it is a specialized workflow. However, before you build the "Unique Magic" of your app, you must establish the **Utility Core**. These are the features that every professional SaaS requires to function as a legitimate business. Without these, you don't have a product; you have a demo.</p>
                     
                     <p>Elite builders don't spend time re-designing these foundation pieces. They use standard patterns for Login, Billing, and Settings so they can focus 90% of their energy on the "Primary Utility"—the one thing users actually pay for.</p>
@@ -456,7 +457,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have defined your Primary Utility and can map the fastest path to value for a new user.</p>
-                `
+`
             },
             {
                 id: '3.2',
@@ -464,7 +465,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Design for Busy People</h3>
+    < h3 > The Context: Design for Busy People</h3 >
                     <p>UX (User Experience) isn't about "art" or "beauty"; it's about <strong>Efficiency</strong> and <strong>Clarity</strong>. Your users are busy business owners or professionals. They don't want to "explore" your app; they want to get in, solve their problem, and get out. A user should never have to ask "What do I do next?". If they have to think, you have failed.</p>
                     
                     <p>Elite UX is invisible. It uses standard mental models that users already have from using apps like Facebook, Slack, or Gmail. Don't reinvent the wheel; use the wheel to drive your user to their goal faster.</p>
@@ -489,7 +490,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>A non-technical person can complete your app's "Primary Task" in under 30 seconds without help.</p>
-                `
+`
             },
             {
                 id: '3.3',
@@ -497,7 +498,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Structure Before Style</h3>
+    < h3 > The Context: Structure Before Style</h3 >
                     <p>Wireframing is the process of building the "Skeleton" of your SaaS. At this stage, we do not care about colors, fonts, or pretty images. We only care about <strong>Hierarchy</strong>, <strong>Data Placement</strong>, and <strong>User Flow</strong>. If the skeleton is broken, no amount of CSS "lipstick" will save the product.</p>
                     
                     <p>Working in "Low Fidelity" (black and white boxes) allows you to move 10x faster. You can rearrange entire pages in seconds. Once the wireframe feels "right," the actual design phase becomes a simple matter of choosing a color palette.</p>
@@ -523,7 +524,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Skeleton" of your 3 main pages (Dashboard, Settings, Billing) and can explain how a user navigates between them.</p>
-                `
+`
             },
             {
                 id: '3.4',
@@ -531,7 +532,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Mapping the Path</h3>
+    < h3 > The Context: Mapping the Path</h3 >
                     <p>User Flow is the journey from "Stranger" to "Successful Customer." The most critical flow in any SaaS is <strong>Onboarding</strong>. If a user logs in and lands on an empty screen with no direction, they will leave and never come back. Your goal is to guide them to their first "Win" as fast as possible.</p>
                     
                     <p>Elite builders map out the "Ideal Path" and then remove every obstacle in the user's way. Every form field you remove and every click you eliminate increases your conversion rate and long-term retention.</p>
@@ -556,7 +557,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a step-by-step map of your onboarding flow and have eliminated at least one redundant step.</p>
-                `
+`
             },
             {
                 id: '3.5',
@@ -564,7 +565,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Focus is a Superpower</h3>
+    < h3 > The Context: Focus is a Superpower</h3 >
                     <p>SaaS products rarely fail because they are missing features. They fail because they have <strong>Too Many Features</strong> that no one cares about. This is called "Feature Bloat." Elite builders separate the "Must-Haves" from the "Nice-to-Haves." Your goal is to build the minimum amount of software required to solve the core pain perfectly.</p>
                     
                     <p>By focusing on fewer features, you can make those features world-class. A tool that does one thing 10x better than the competition will always win against a tool that does 100 things poorly.</p>
@@ -589,7 +590,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Lean Roadmap" that contains only Core and essential Support features.</p>
-                `
+`
             },
             {
                 id: '3.6',
@@ -597,7 +598,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Launching for Learning</h3>
+    < h3 > The Context: Launching for Learning</h3 >
                     <p>The **MVP (Minimum Viable Product)** is the smallest version of your vision that a customer is willing to pay for. Many founders spend 6 months building in a cave, only to launch and find out no one wants what they built. Elite builders use the MVP to start the <strong>Learning Loop</strong> as fast as possible. If you aren't slightly embarrassed by your first version, you launched too late.</p>
                     
                     <p>The goal of an MVP is not to be "Feature Complete." It is to be "Value Complete." It should solve the core pain so well that the user ignores the missing "luxury" features.</p>
@@ -622,7 +623,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a defined "Scope of Work" for your MVP that can realistically be built in 14-21 days.</p>
-                `
+`
             }
         ]
     },
@@ -635,7 +636,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Speed Over Everything</h3>
+    < h3 > The Context: Speed Over Everything</h3 >
                     <p>The era of needing a 5-person development team and $50k in funding to launch a SaaS is over. Modern **No-Code** and **Low-Code** tools allow an elite founder to build and launch a professional, scalable application in <strong>Days</strong>, not months. The goal is to spend less time "writing code" and more time "solving the problem."</p>
                     
                     <p>Elite builders use a hybrid approach: they use standard No-Code tools for the interface and logic, but they aren't afraid to drop in custom CSS or JavaScript for those "special moments" that make a product feel premium.</p>
@@ -660,7 +661,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have chosen your technology stack and have successfully sent one piece of data from a web form to a live database.</p>
-                `
+`
             },
             {
                 id: '4.2',
@@ -668,7 +669,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Your AI Co-Founder</h3>
+    < h3 > The Context: Your AI Co - Founder</h3 >
                     <p>AI has completely democratized technical creation. You no longer need to spend 4 years learning every detail of JavaScript syntax. Instead, you need to master <strong>Architectural Prompting</strong>—the ability to tell an AI precisely what to build and how it should fit into your overall system. AI is the most powerful "Force Multiplier" in human history.</p>
                     
                     <p>Elite builders don't use AI to "do the work" for them; they use AI to <strong>accelerate</strong> their work. They use it to generate difficult UI components, write complex database queries, and debug errors that used to take hours in seconds.</p>
@@ -693,7 +694,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have successfully used an AI assistant to generate and refine a functional UI component that matches your project's brand.</p>
-                `
+`
             },
             {
                 id: '4.3',
@@ -701,7 +702,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Secure the Perimeter</h3>
+    < h3 > The Context: Secure the Perimeter</h3 >
                     <p>Authentication (Login/Secret Data) is the most dangerous part of a SaaS to build from scratch. One mistake, and your customer data is leaked. Elite builders **never** build their own auth system. They use professional, multi-billion dollar "Gatekeepers" like <strong>Supabase Auth</strong> or Auth0. This ensures your users are safe and you can sleep at night.</p>
                     
                     <p>By using a professional provider, you also get advanced features like Social Logins (Google/Facebook) and Magic Links for free, which dramatically improves your sign-up conversion rate.</p>
@@ -726,7 +727,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a functional "Login/Logout" flow that correctly redirects the user and protects the dashboard content.</p>
-                `
+`
             },
             {
                 id: '4.4',
@@ -734,7 +735,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The App Shell Pattern</h3>
+    < h3 > The Context: The App Shell Pattern</h3 >
                     <p>The dashboard is where the value of your SaaS is actually delivered. To make a product feel "Premium," we use the <strong>App Shell Pattern</strong>. This means the navigation (sidebar/header) stays constant while only the central content area changes. This makes the app feel fast, stable, and professional.</p>
                     
                     <p>A great dashboard is "Information Dense" but not "Cluttered." It should show the user exactly what they need to see to make their next business decision. If a user has to scroll for 10 seconds to find their data, your dashboard has failed.</p>
@@ -759,7 +760,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a responsive "Shell" that allows users to navigate between views without the navigation bars moving or flickering.</p>
-                `
+`
             },
             {
                 id: '4.5',
@@ -767,7 +768,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Structuring Your Data</h3>
+    < h3 > The Context: Structuring Your Data</h3 >
                     <p>At its core, every SaaS is just a "Pretty Face" on top of a <strong>Database</strong>. Your app's value is in its memory—it remembers who the users are, what they've built, and how much they've paid. Elite builders use a **Relational Database** (like PostgreSQL, managed by Supabase) because it allows for complex queries and handles growth perfectly.</p>
                     
                     <p>The secret to a fast SaaS is a "Clean Schema." If your database is messy, your app will be slow and buggy. You must think about how data "Connects" before you start saving it.</p>
@@ -792,7 +793,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Protected" database table with Row Level Security enabled, ensuring user data privacy.</p>
-                `
+`
             },
             {
                 id: '4.6',
@@ -800,7 +801,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Push to Live</h3>
+    < h3 > The Context: Push to Live</h3 >
                     <p>Deployment is the moment your creation moves from your personal computer to the global stage. We use **Vercel** as our primary deployment engine because it's built for speed, scales automatically to millions of users, and is completely free for your first few projects. Deployment should not be a "Scary Event"; it should happen every time you save your work.</p>
                     
                     <p>Elite builders use **Continuous Deployment**. Every time they push code to GitHub, the live website updates automatically. This allows you to fix bugs and add features in real-time while your users are logged in.</p>
@@ -825,7 +826,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>Your application is live on a public URL and it automatically updates when you push new code to GitHub.</p>
-                `
+`
             }
         ]
     },
@@ -838,7 +839,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Building the Cash Register</h3>
+    < h3 > The Context: Building the Cash Register</h3 >
                     <p>Stripe is the gold standard for SaaS payments. Integrating it means moving from a "Project" to a "Business." We use <strong>Stripe Checkout</strong> for the fastest, most secure setup. It allows you to leverage Stripe's billion-dollar infrastructure to handle credit cards, Apple Pay, and Google Pay with just a few lines of code.</p>
                     
                     <p>Elite builders don't just "Add a buy button." They build a <strong>Billing Strategy</strong>. This includes setting up automated receipts, handling failed payments gracefully, and giving users a "Customer Portal" where they can manage their own subscriptions without emailing you.</p>
@@ -863,7 +864,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have successfully redirected a user to a Stripe Checkout page and simulated a "Success" payment in Test Mode.</p>
-                `
+`
             },
             {
                 id: '5.2',
@@ -871,7 +872,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Power of Continuity</h3>
+    < h3 > The Context: The Power of Continuity</h3 >
                     <p>Recurring revenue (subscriptions) is the "Heartbeat" of a SaaS business. It's what makes the business valuable to investors and provides the founder with predictable income. However, for a new launch, sometimes **One-Time Credits** or **Lifetime Deals (LTDs)** are better for generating initial cash flow and building a user base quickly.</p>
                     
                     <p>Elite founders choose their model based on their "Cost of Goods Sold" (COGS). If your app uses expensive AI credits every time a user clicks a button, you **must** use a model that covers those costs (like usage-based or high-tier subscriptions).</p>
@@ -896,7 +897,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a defined pricing structure that covers your costs and provides a clear "Reason to Upgrade" for free users.</p>
-                `
+`
             },
             {
                 id: '5.3',
@@ -904,7 +905,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Plugging the Leaky Bucket</h3>
+    < h3 > The Context: Plugging the Leaky Bucket</h3 >
                     <p>Churn is the "Silent Killer" of SaaS. It is the percentage of users who cancel their subscription every month. If you have 10% monthly churn, you have to replace your *entire* customer base every 10 months just to stay even. Growth is impossible if you have a "Leaky Bucket."</p>
                     
                     <p>Elite founders spend as much time on **Retention** (keeping users) as they do on **Acquisition** (getting new users). Getting a current user to stay is much cheaper and more profitable than finding a new one.</p>
@@ -929,7 +930,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified your app's "Aha! Moment" and have a plan to proactively reach out to inactive users.</p>
-                `
+`
             },
             {
                 id: '5.4',
@@ -937,7 +938,7 @@ const saasCurriculum = [
                 duration: '10:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Value-First Growth</h3>
+    < h3 > The Context: Value - First Growth</h3 >
                     <p>Upselling is not about "Squeezing" your customers for more money; it's about providing **Accelerated Value** as they become more successful. If your user's business is growing because of your software, they will be happy to pay for more capacity, more power, and more speed. This is "Natural Growth."</p>
                     
                     <p>Elite founders design tiers that "Grow with the Customer." As they generate more revenue or save more time using your tool, your pricing should capture a small slice of that extra value.</p>
@@ -962,7 +963,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have defined a "Standard" vs. "Professional" feature set that encourages users to grow into higher-paying tiers.</p>
-                `
+`
             },
             {
                 id: '5.5',
@@ -970,7 +971,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Merchant of Record</h3>
+    < h3 > The Context: The Merchant of Record</h3 >
                     <p>The most boring, yet dangerous, part of a global SaaS is **Tax Compliance**. If you sell software to a user in Norway, a user in Texas, and a user in Japan, you technically owe taxes to all three governments. Handling this manually is a nightmare that kills many solo founders. Elite founders use a <strong>Merchant of Record (MoR)</strong>.</p>
                     
                     <p>An MoR like LemonSqueezy or Paddle doesn't just "process payments"—they actually "resell" your software and take on internal tax liability. They become the "Seller," so YOU don't have to worry about global tax audits.</p>
@@ -995,7 +996,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have chosen your "Money Engine" and understand your legal responsibility for global taxes.</p>
-                `
+`
             },
             {
                 id: '5.6',
@@ -1003,7 +1004,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Evolution of Value</h3>
+    < h3 > The Context: The Evolution of Value</h3 >
                     <p>Your launch pricing should NEVER be your "forever" pricing. In fact, if your product is growing, your price should be increasing every 6-12 months. Early adopters get a "Founder's Discount" for dealing with initial bugs, but as your SaaS matures into a world-class tool, your price should reflect that massive improvement.</p>
                     
                     <p>Elite founders understand that **Pricing is a Lever**. Changing a price from $29 to $39 can instantly increase your profit by 30% without finding a single new customer.</p>
@@ -1028,7 +1029,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a short-term and long-term pricing roadmap that allows your revenue to scale alongside your product's power.</p>
-                `
+`
             }
         ]
     },
@@ -1041,7 +1042,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Killing the "Build it and they will come" Myth</h3>
+    < h3 > The Context: Killing the "Build it and they will come" Myth</h3 >
                     <p>The most dangerous myth in SaaS is "If I build it, they will come." The reality is that the internet is a noisy city, and your app is a tiny shop in a back alley. Your first 10-50 customers will not come from SEO or "Viral Growth." They will come from **Manual Hustle**, direct DMs, and talking to people who have the problem you solved.</p>
                     
                     <p>Elite founders understand that marketing is 50% of the game. If you spend 100 hours building, you must spend at least 100 hours selling.</p>
@@ -1066,7 +1067,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a list of 5 real people who have expressed interest in "Testing" your product.</p>
-                `
+`
             },
             {
                 id: '6.2',
@@ -1074,7 +1075,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Art of the Warm Cold-Email</h3>
+    < h3 > The Context: The Art of the Warm Cold - Email</h3 >
                     <p>Cold outreach (Email/DM) is a superpower if done with **Empathy** and **Specificity**. If you send generic, "I built a cool app" messages, you will be ignored. But if you show a user that you understand their specific struggle, they will listen. This is how you win "High Value" early adopters.</p>
                     
                     <p>Elite founders don't sell "Features." They sell a "Bridge" from the user's current pain to their desired future state.</p>
@@ -1100,7 +1101,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have sent 10 personalized messages and received at least one positive reply or question about your app.</p>
-                `
+`
             },
             {
                 id: '6.3',
@@ -1108,7 +1109,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Engineering Authority</h3>
+    < h3 > The Context: Engineering Authority</h3 >
                     <p>Content is the "Compounding Interest" of your marketing strategy. While cold outreach gets you a user today, content builds a system that attracts users while you sleep. By teaching your users for free, you establish yourself as the **Authority** in the space. When they finally need a software solution, yours is the only one they trust.</p>
                     
                     <p>Elite founders don't "post on social media"; they **Build in Public**. They share the bugs, the wins, and the strategy. This humanizes the software and builds a "Founder Brand" that is impossible for big competitors to copy.</p>
@@ -1133,7 +1134,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have published one piece of "High Value" content that teaches your audience something useful without trying to sell to them.</p>
-                `
+`
             },
             {
                 id: '6.4',
@@ -1141,7 +1142,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Google is Your Best Salesman</h3>
+    < h3 > The Context: Google is Your Best Salesman</h3 >
                     <p>SEO (Search Engine Optimization) is the "Long Game" of SaaS marketing. It's about ensuring that when a user has a problem and searches for a solution on Google, your app is the first thing they see. Unlike ads, which stop working when you stop paying, SEO is an asset that provides **Free Traffic** for years.</p>
                     
                     <p>Elite founders don't try to rank for "Broad Keywords" like "Software." They target "High-Intent Long-Tail Keywords"—specific phrases that people type when they are ready to buy (e.g., "Best lead tracker for realtors in California").</p>
@@ -1166,7 +1167,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified 3 "Long-Tail" keywords that you can realistically rank for on Page 1 of Google.</p>
-                `
+`
             },
             {
                 id: '6.5',
@@ -1174,7 +1175,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Big Splash</h3>
+    < h3 > The Context: The Big Splash</h3 >
                     <p>Launch platforms like **Product Hunt** can give your SaaS thousands of users, hundreds of backlinks, and dozens of feature articles in a single 24-hour window. It is the "Grand Opening" of your business. However, a successful launch isn't about luck; it's about a 4-week preparation strategy to maximize your visibility.</p>
                     
                     <p>Elite founders don't just "post a link" on Product Hunt. They build a "Launch Tribe" of supporters and prepare multiple "FOMO" (Fear Of Missing Out) offers to drive massive traffic.</p>
@@ -1199,7 +1200,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a Product Hunt account and a defined "Launch Offer" that is a genuine 'too good to refuse' deal.</p>
-                `
+`
             },
             {
                 id: '6.6',
@@ -1207,7 +1208,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Path to Conversion</h3>
+    < h3 > The Context: The Path to Conversion</h3 >
                     <p>Marketing brings people to your front door; the **Sales Funnel** is the path that walks them from the door to the cash register. A SaaS without a funnel is just a "Feature." A SaaS with a funnel is a business. Your goal is to simplify the journey and remove every single friction point that causes a user to drop off.</p>
                     
                     <p>Elite founders build "High-Activation" funnels. They don't just ask for money immediately; they provide a "Value Hook" (like a free trial or a free tool) to prove the app works first.</p>
@@ -1233,7 +1234,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a defined "Marketing Funnel" map and a drafted Welcome Email for new users.</p>
-                `
+`
             }
         ]
     },
@@ -1246,7 +1247,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Hands-Off SaaS</h3>
+    < h3 > The Context: The Hands - Off SaaS</h3 >
                     <p>Scaling is about working "On" the business, not "In" it. If you have to manually approve every new user or send every invoice yourself, your SaaS will eventually break. Automation allows you to serve 1,000 users with the same effort as 10. It converts your software from a "Job" into a "Machine."</p>
                     
                     <p>Elite founders use AI and No-Code logic to handle the "Boring Stuff" (billing, onboarding, data entry) so they can spend their time on product strategy and high-level marketing.</p>
@@ -1271,7 +1272,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have automated at least one core customer-facing or back-office process that previously required manual work.</p>
-                `
+`
             },
             {
                 id: '7.2',
@@ -1279,7 +1280,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Support as a Retention Feature</h3>
+    < h3 > The Context: Support as a Retention Feature</h3 >
                     <p>Early on, you **must** do support yourself to learn what's broken. But as you scale, great support must become a "System." Responsive, helpful support is often the only thing that prevents a frustrated user from cancelling their subscription (churn). Elite builders treat support as a product feature that builds brand loyalty.</p>
                     
                     <p>The goal is to provide "Instant Value" even when you're sleeping. This means combining a searchable Help Center with smart, automated triage.</p>
@@ -1304,7 +1305,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a centralized support system and at least 5 help articles ready for your users.</p>
-                `
+`
             },
             {
                 id: '7.3',
@@ -1312,7 +1313,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Buying Back Your Time</h3>
+    < h3 > The Context: Buying Back Your Time</h3 >
                     <p>As a founder, your time is your most valuable asset. Once you reach Product-Market Fit, you must stop being the "Chief Everything Officer" and start delegating. Every hour you spend on $10/hr tasks (like data entry or customer support) is an hour you aren't spending on $1,000/hr tasks (like growth strategy).</p>
                     
                     <p>Elite builders hire "Force Multipliers"—people who take over the repetitive parts of the business so the founder can focus on the next level of scaling.</p>
@@ -1337,7 +1338,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a written SOP for at least one core task and a draft job description for your first virtual team member.</p>
-                `
+`
             },
             {
                 id: '7.4',
@@ -1345,7 +1346,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Building Digital Authority</h3>
+    < h3 > The Context: Building Digital Authority</h3 >
                     <p>In Lesson 6.4, we covered basic SEO. Now, we enter the world of **Backlinks**. Search engines like Google treat a link from another website to yours as a "Vote of Confidence." The more high-quality "Votes" you have, the higher you rank. This is the difference between being on the first page of Google or being invisible.</p>
                     
                     <p>Elite builders don't just "Wait" for links. They build "Link-Worthy Assets" (like free tools, deep research papers, or infographics) that other bloggers and news sites *want* to link to.</p>
@@ -1370,7 +1371,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified your "Link Magnet" strategy and have a list of 5 high-authority targets for outreach.</p>
-                `
+`
             },
             {
                 id: '7.5',
@@ -1378,7 +1379,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Pouring Gasoline on the Fire</h3>
+    < h3 > The Context: Pouring Gasoline on the Fire</h3 >
                     <p>Paid Advertising (Meta, Google, X, LinkedIn) is NOT for testing your idea. It is for **Scaling** a version of your product that you already know people want. If you spend $1.00 on an ad and get $2.00 back in subscription value, you have an infinite money machine. If you don't know your numbers, ads are just a way to lose money fast.</p>
                     
                     <p>Elite builders use "Retargeting"—showing ads only to people who have already visited their site but didn't sign up. This is significantly cheaper and more effective than cold targeting.</p>
@@ -1403,7 +1404,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a calculated "Maximum CAC" (how much you are willing to pay for a new user) and basic ad tracking set up.</p>
-                `
+`
             },
             {
                 id: '7.6',
@@ -1411,7 +1412,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The CEO Mindset Shift</h3>
+    < h3 > The Context: The CEO Mindset Shift</h3 >
                     <p>$10,000 Monthly Recurring Revenue (MRR) is the "Escape Velocity" of SaaS. At this level, your app is no longer a "Side Project"—it is a legitimate business. To reach $50k or $100k MRR, you must stop being the "Developer" and start being the "CEO." This means focusing on **Systems** and **Strategy** rather than just fixing bugs.</p>
                     
                     <p>Elite builders at this stage focus on "Partnerships" and "Expansion Revenue"—selling more value to the customers they already have.</p>
@@ -1436,7 +1437,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Scaling Roadmap" that identifies your next 3 major strategic moves beyond the initial launch phase.</p>
-                `
+`
             }
         ]
     },
@@ -1449,7 +1450,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Precision Performance at Scale</h3>
+    < h3 > The Context: Precision Performance at Scale</h3 >
                     <p>When you have 10 users, you can afford to write "Sloppy Queries." When you have 1,000 or 10,000 users, that same sloppy code will cause your database to crawl and your app to feel broken. Elite builders know how to **Optimize** their data layer before the users start complaining. Performance is a feature.</p>
                     
                     <p>The goal is to move from "Checking the Disk" to "Searching the Memory." This requires a deep understanding of how databases actually read and store information.</p>
@@ -1474,7 +1475,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have audited your primary table's performance and confirmed that all "High-Frequency" lookups return in under 50ms.</p>
-                `
+`
             },
             {
                 id: '8.2',
@@ -1482,7 +1483,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Responsibility of Scale</h3>
+    < h3 > The Context: The Responsibility of Scale</h3 >
                     <p>User data is not an "Asset"; it is a **Liability**. You must protect your users' trust as fiercely as your monthly revenue. In the world of SaaS, a single security breach can end your business overnight. Elite builders don't treat security as a "Later" task—they build a "First Principles" defense into every line of code.</p>
                     
                     <p>Security is about protecting three things: Data Integrity (is it correct?), Confidentiality (who can see it?), and Availability (is the site up?).</p>
@@ -1507,7 +1508,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have verified that Row Level Security is active on every table and that your production secrets are securely managed.</p>
-                `
+`
             },
             {
                 id: '8.3',
@@ -1515,7 +1516,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Physics of Retention</h3>
+    < h3 > The Context: The Physics of Retention</h3 >
                     <p>Churn is the "Leaky Bucket" that kills SaaS businesses. If you gain 100 users a month but lose 100 users, your growth is zero. Elite builders treat Churn management as a **Product Feature**. We divide it into **Voluntary Churn** (they chose to leave) and **Involuntary Churn** (their credit card failed without them knowing).</p>
                     
                     <p>The goal is to maximize "LTV" (Lifetime Value) by ensuring the user continues to find value in the app long after the first month.</p>
@@ -1540,7 +1541,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have established a "Dunning" sequence for failed payments and a cancellation feedback loop to gather product insights.</p>
-                `
+`
             },
             {
                 id: '8.4',
@@ -1548,7 +1549,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Becoming a Platform</h3>
+    < h3 > The Context: Becoming a Platform</h3 >
                     <p>The ultimate sign of a "Professional" SaaS is moving from being a standalone app to becoming a **Platform**. Having its own Public API (Application Programming Interface) allows other developers to build tools on top of your software. This creates a powerful network effect—as more people integrate with your SaaS, it becomes harder for them to leave.</p>
                     
                     <p>Elite builders design their apps "API-First," meaning they build the core engine so that it can be accessed by anything (a mobile app, a website, or a 3rd party tool) via standard requests.</p>
@@ -1573,7 +1574,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified your first Public API endpoint and understand the security model required to protect user data from unauthorized access.</p>
-                `
+`
             },
             {
                 id: '8.5',
@@ -1581,7 +1582,7 @@ const saasCurriculum = [
                 duration: '12:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: You Can't Fix what You Can't See</h3>
+    < h3 > The Context: You Can't Fix what You Can't See</h3 >
                     <p>Performance monitoring and "Observability" are the difference between a "Hobby Project" and a "Pro Business." You need to know that your site is down **before** your users send you an angry email. Elite builders use automated tools to watch their apps 24/7, catching errors and slow-downs in real-time.</p>
                     
                     <p>The goal is to move from "Reactive" (fixing things after they break) to "Proactive" (fixing things while they are just slightly slow).</p>
@@ -1606,7 +1607,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have active error tracking and uptime monitoring running on your production application.</p>
-                `
+`
             },
             {
                 id: '8.6',
@@ -1614,7 +1615,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: The Ultimate Payday</h3>
+    < h3 > The Context: The Ultimate Payday</h3 >
                     <p>In the world of SaaS, your application is not just a tool—it is a **Financial Asset**. One day, you might want to sell your business for a life-changing sum. This is called an "Exit." Most SaaS businesses sell for 3x to 5x their *annual* profit. Preparing for an exit starts **Today** by keeping clean records and building a business that doesn't depend on you.</p>
                     
                     <p>Elite builders build with the "End in Mind." They ensure that if they disappeared tomorrow, someone else could buy the business and run it without friction.</p>
@@ -1639,7 +1640,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Sell-Ready" mindset and a basic understanding of how SaaS valuations are calculated in the real market.</p>
-                `
+`
             }
         ]
     },
@@ -1652,7 +1653,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Zero to Hello World</h3>
+    < h3 > The Context: Zero to Hello World</h3 >
                     <p>The first step is always the hardest. Most people fail because they spend weeks "Preparing" instead of "Building." In this lesson, we will set up a professional developer environment in under 15 minutes. This isn't just a "Playground"—it is the exact setup used by high-speed SaaS teams to ship code daily.</p>
                     
                     <p>Elite builders focus on **Cursor** or **VS Code** with AI extensions to multiply their coding speed by 10x from day one.</p>
@@ -1677,7 +1678,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a code editor open, a GitHub repo connected, and you can see a "Hello World" page running on your local browser.</p>
-                `
+`
             },
             {
                 id: 'B.2',
@@ -1685,7 +1686,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Your First Side-Launch</h3>
+    < h3 > The Context: Your First Side - Launch</h3 >
                     <p>A "Lead Magnet" is a free, mini-tool that solves a tiny problem for your target audience. It is the "Gateway Drug" to your main SaaS. Instead of asking people to pay $50/mo on day one, you give them a "Free Win" in exchange for their email address. This builds trust and ensures you have a list of people to sell to when your main app is ready.</p>
                     
                     <p>Elite builders use Lead Magnets to validate their ideas before they write a single line of complex backend code.</p>
@@ -1710,7 +1711,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "One-Page Tool" where a user can enter data and see a custom response on the screen.</p>
-                `
+`
             },
             {
                 id: 'B.3',
@@ -1718,7 +1719,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Adding the "Magic" Layer</h3>
+    < h3 > The Context: Adding the "Magic" Layer</h3 >
                     <p>Adding AI transforms a boring tool into a "Smart SaaS." In the past, building a "Real Estate Listing Writer" would take months of coding. Today, you can connect your app to the OpenAI API and build that same tool in just 10 lines of code. AI is the "Brains" of your operation; your job is to give it the right instructions.</p>
                     
                     <p>Elite builders don't just "Pass-through" user input; they wrap it in "Hidden Prompts" that make the AI perform 10x better.</p>
@@ -1743,7 +1744,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You can successfully send a message to OpenAI from your code and receive a text response back.</p>
-                `
+`
             },
             {
                 id: 'B.4',
@@ -1751,7 +1752,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Creating the "Inner Sanctum"</h3>
+    < h3 > The Context: Creating the "Inner Sanctum"</h3 >
                     <p>The dashboard is where your users will spend 90% of their time. It is the core workspace where they interact with your AI features and manage their data. A clean, functional dashboard makes your app feel like a "Professional Tool" rather than just a website. Your goal is to remove all friction and make their "Core Action" the easiest thing to do.</p>
                     
                     <p>Elite builders use "Component-Based Design" to ensure the dashboard remains fast and easy to update as new features are added.</p>
@@ -1776,7 +1777,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a private dashboard where a user can log in, see their previous work, and initiate a new "Core Action."</p>
-                `
+`
             },
             {
                 id: 'B.5',
@@ -1784,7 +1785,7 @@ const saasCurriculum = [
                 duration: '15:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Coaching New Users</h3>
+    < h3 > The Context: Coaching New Users</h3 >
                     <p>The most dangerous time for a SaaS is the first 5 minutes. If a user signs up but doesn't understand how to get their "First Win," they will cancel and never return. This is called the "Time to Value" (TTV). Your goal is to make TTV as close to zero as possible using automated onboarding emails.</p>
                     
                     <p>Elite builders use "Drip Sequences" to teach the user how to be successful with the tool without needing a manual support team.</p>
@@ -1809,7 +1810,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have a "Welcome Email" that is automatically delivered to every new user within 60 seconds of signing up.</p>
-                `
+`
             },
             {
                 id: 'B.6',
@@ -1817,7 +1818,7 @@ const saasCurriculum = [
                 duration: '20:00',
                 videoId: 'dQw4w9WgXcQ',
                 desc: `
-                    <h3>The Context: Crossing the Rubicon</h3>
+    < h3 > The Context: Crossing the Rubicon</h3 >
                     <p>Nothing in business feels as good as your first Stripe notification. This is the moment your "Project" becomes a "Business." In this lesson, we finalize your build, move from "Development" to "Production," and invite your first batch of real users to pay you for the value you've created.</p>
                     
                     <p>Elite builders don't wait for "Perfection." They launch "Early and Often," letting real user feedback dictate the next set of features.</p>
@@ -1842,7 +1843,7 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>Your application is Live, public, and capable of accepting real payments from any user in the world.</p>
-                `
+`
             }
         ]
     }
