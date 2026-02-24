@@ -41,7 +41,7 @@ const saasCurriculum = [
                 id: '1.2',
                 title: '1.2 Why SaaS is the King of Business',
                 duration: '12:00',
-                videoId: 'dQw4w9WgXcQ',
+                videoUrl: 'https://youtu.be/-6NxxRAV0Ks',
                 desc: `
     < h3 > The Context: The Magic of MRR</h3 >
                     <p>If you want true freedom, SaaS stands alone. The magic word is <strong>MRR (Monthly Recurring Revenue)</strong>. Unlike traditional businesses where you start every month at zero and have to chase new sales, a SaaS business builds upon itself. If you end January with $1,000 in subscriptions, you start February with $1,000 (minus churn). This compound effect is how small teams reach $10k, $50k, or even $100k per month with elite profit margins.</p>
@@ -74,7 +74,7 @@ const saasCurriculum = [
                 id: '1.3',
                 title: '1.3 Types of SaaS to Dominate',
                 duration: '15:00',
-                videoId: 'dQw4w9WgXcQ',
+                videoUrl: 'https://youtu.be/p9RJiKeskdI',
                 desc: `
     < h3 > The Context: Choosing Your Arena</h3 >
                     <p>Not all SaaS is created equal. You must decide where to play: B2B, B2C, AI SaaS, or Niche SaaS. Choosing the right intersection is critical for early success. **B2B (Business-to-Business)** focuses on solving professional problems. Businesses have higher budgets, lower churn, and look at software as an investment. **B2C (Business-to-Consumer)** targets individuals. While the market is huge, it often suffers from higher friction and lower price points.</p>
@@ -103,6 +103,26 @@ const saasCurriculum = [
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Problem-Heavy" niche and can define its primary B2B or B2C characteristics.</p>
 `
+            },
+            {
+                id: '1.3b',
+                title: '1.3b SaaS Business Models',
+                duration: '10:00',
+                videoUrl: 'https://youtu.be/l50q9bi05Zc',
+                desc: `
+                    <h3>The Context: Monetization Strategies</h3>
+                    <p>Understanding different SaaS business models is key to maximizing revenue. This section covers subscription tiers, usage-based billing, and hybrid models.</p>
+                `
+            },
+            {
+                id: '1.3c',
+                title: '1.3c SaaS Case Studies',
+                duration: '10:00',
+                videoUrl: 'https://youtu.be/LtsvYIepMd4',
+                desc: `
+                    <h3>The Context: Learning from the Best</h3>
+                    <p>Analyze successful SaaS companies to understand their path to growth and how they overcame initial challenges.</p>
+                `
             },
             {
                 id: '1.4',
