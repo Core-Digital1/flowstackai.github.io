@@ -41,9 +41,9 @@ const saasCurriculum = [
                 id: '1.2',
                 title: '1.2 Why SaaS is the King of Business',
                 duration: '12:00',
-                videoUrl: 'https://youtu.be/-6NxxRAV0Ks',
+                videoUrl: 'https://www.youtube.com/embed/-6NxxRAV0Ks',
                 desc: `
-    < h3 > The Context: The Magic of MRR</h3 >
+                    <h3>The Context: The Magic of MRR</h3>
                     <p>If you want true freedom, SaaS stands alone. The magic word is <strong>MRR (Monthly Recurring Revenue)</strong>. Unlike traditional businesses where you start every month at zero and have to chase new sales, a SaaS business builds upon itself. If you end January with $1,000 in subscriptions, you start February with $1,000 (minus churn). This compound effect is how small teams reach $10k, $50k, or even $100k per month with elite profit margins.</p>
                     
                     <p>SaaS is infinitely scalable. In a service-based business (like consulting), more customers mean more work-hours for you. Deep in the SaaS model, the marginal cost of the 1,000th user is near zero. The software handles the "work" while your input remains constant. This decoupling of <strong>time from money</strong> is the ultimate goal of the elite builder. Furthermore, SaaS companies command the highest valuation multiples (5x-10x annual revenue), making them the perfect financial instrument for building generational wealth.</p>
@@ -68,15 +68,19 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have calculated your "Freedom Number" and know exactly how many subscribers you need to reach it.</p>
-`
+                `
             },
             {
                 id: '1.3',
-                title: '1.3 Types of SaaS to Dominate',
-                duration: '15:00',
-                videoUrl: 'https://youtu.be/p9RJiKeskdI',
-                desc: `
-    < h3 > The Context: Choosing Your Arena</h3 >
+                title: '1.3 Types of SaaS & Business Models',
+                duration: '35:00',
+                videoUrl: 'https://www.youtube.com/embed/p9RJiKeskdI',
+                pages: [
+                    `
+                    <div class="video-embed-container" style="margin-bottom: 25px;">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/p9RJiKeskdI" frameborder="0" allowfullscreen style="border-radius: 12px; aspect-ratio: 16/9;"></iframe>
+                    </div>
+                    <h3>Part 1: Choosing Your Arena</h3>
                     <p>Not all SaaS is created equal. You must decide where to play: B2B, B2C, AI SaaS, or Niche SaaS. Choosing the right intersection is critical for early success. **B2B (Business-to-Business)** focuses on solving professional problems. Businesses have higher budgets, lower churn, and look at software as an investment. **B2C (Business-to-Consumer)** targets individuals. While the market is huge, it often suffers from higher friction and lower price points.</p>
                     
                     <p>The new gold mine is **AI SaaS**. By leveraging LLMs (Large Language Models), you can build tools that perform complex cognitive tasks—writing, coding, or data analysis—at a fraction of the cost. Finally, **Niche SaaS** (Micro-SaaS) involves going narrow (e.g., tools for plumbers). By solving a specific, neglected problem, you eliminate competition and become the "must-have" tool for that community.</p>
@@ -92,7 +96,14 @@ const saasCurriculum = [
                     <div class="highlight-box">
                         <strong>Practical Example:</strong> Instead of building a "generic editor," Bannerbear ($50k/mo) built an API specifically for automated social media images. They found a B2B niche with zero competition and dominated it.
                     </div>
-
+                    `,
+                    `
+                    <div class="video-embed-container" style="margin-bottom: 25px;">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/l50q9bi05Zc" frameborder="0" allowfullscreen style="border-radius: 12px; aspect-ratio: 16/9;"></iframe>
+                    </div>
+                    <h3>Part 2: SaaS Business Models</h3>
+                    <p>Understanding different SaaS business models is key to maximizing revenue. This section covers subscription tiers, usage-based billing, and hybrid models.</p>
+                    
                     <h3>Elite Action Plan:</h3>
                     <ul>
                         <li><strong>Step 1:</strong> List 3 industries you understand well (e.g., Real Estate, Fitness, E-commerce).</li>
@@ -102,28 +113,21 @@ const saasCurriculum = [
 
                     <h3>Success Metric:</h3>
                     <p>You have identified one "Problem-Heavy" niche and can define its primary B2B or B2C characteristics.</p>
-`
-            },
-            {
-                id: '1.3b',
-                title: '1.3b SaaS Business Models',
-                duration: '10:00',
-                videoUrl: 'https://youtu.be/l50q9bi05Zc',
-                desc: `
-                    <h3>The Context: Monetization Strategies</h3>
-                    <p>Understanding different SaaS business models is key to maximizing revenue. This section covers subscription tiers, usage-based billing, and hybrid models.</p>
-                `
-            },
-            {
-                id: '1.3c',
-                title: '1.3c SaaS Case Studies',
-                duration: '10:00',
-                videoUrl: 'https://youtu.be/LtsvYIepMd4',
-                desc: `
-                    <h3>The Context: Learning from the Best</h3>
+                    `,
+                    `
+                    <div class="video-embed-container" style="margin-bottom: 25px;">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/LtsvYIepMd4" frameborder="0" allowfullscreen style="border-radius: 12px; aspect-ratio: 16/9;"></iframe>
+                    </div>
+                    <h3>Part 3: SaaS Case Studies</h3>
                     <p>Analyze successful SaaS companies to understand their path to growth and how they overcame initial challenges.</p>
-                `
+
+                    <div class="highlight-box">
+                        <strong>Practical Example:</strong> See how companies like Gumroad or ConvertKit built in public to win the trust of their initial user base.
+                    </div>
+                    `
+                ]
             },
+
             {
                 id: '1.4',
                 title: '1.4 How SaaS Makes Money (Pricing)',
